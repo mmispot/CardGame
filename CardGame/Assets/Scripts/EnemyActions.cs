@@ -3,11 +3,15 @@ using UnityEngine;
 public class EnemyActions : MonoBehaviour
 {
     public GameManager gameManager;
-    public int randomEnum = Random.Range(1, 3);
+    public int randomEnum;
     
     public void RandomiseTurn()
     {
+        randomEnum = Random.Range(1, 3);
+    }
 
+    public void ChooseAction()
+    {
         if (randomEnum == 1)
         {
             Attack();
@@ -16,7 +20,7 @@ public class EnemyActions : MonoBehaviour
         {
             Defend();
         }
-        else if (randomEnum == 3) 
+        else if (randomEnum == 3)
         {
             Heal();
         }
@@ -26,8 +30,8 @@ public class EnemyActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
-            Debug.Log("player attacked");
-            gameManager.ChangeTurn();
+            Debug.Log("enemy attacked");
+            gameManager.EndTurn();
         }
     }
 
@@ -35,8 +39,8 @@ public class EnemyActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
-            Debug.Log("player defended");
-            gameManager.ChangeTurn();
+            Debug.Log("enemy defended");
+            gameManager.EndTurn();
         }
     }
 
@@ -44,8 +48,8 @@ public class EnemyActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
-            Debug.Log("player heal");
-            gameManager.ChangeTurn();
+            Debug.Log("enemy heal");
+            gameManager.EndTurn();
         }
     }
 }

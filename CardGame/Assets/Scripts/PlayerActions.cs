@@ -8,7 +8,7 @@ public class PlayerActions : MonoBehaviour
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
             Debug.Log("player attacked");
-            gameManager.ChangeTurn();
+            gameManager.EndTurn();
         }
     }
 
@@ -17,7 +17,7 @@ public class PlayerActions : MonoBehaviour
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
             Debug.Log("player defended");
-            gameManager.ChangeTurn();
+            gameManager.EndTurn();
         }
     }
 
@@ -26,7 +26,7 @@ public class PlayerActions : MonoBehaviour
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
             Debug.Log("player healed");
-            gameManager.ChangeTurn();
+            gameManager.EndTurn();
         }
     }
 }
