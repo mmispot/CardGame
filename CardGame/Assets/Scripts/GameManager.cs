@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator TakeTimeForTurn()
     {
-        yield return new WaitForSeconds(5);
-        enemyActions.ChooseAction();
+        yield return new WaitForSeconds(3);
+        enemyActions.DoAction();
     }
 
     public void EndTurn()
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
             case GameStates.PlayerTurn:
                 currentState = GameStates.EnemyTurn;
                 Debug.Log(currentState);
-                enemyActions.RandomiseTurn();
+                enemyActions.RandomiseAction();
                 StartCoroutine(TakeTimeForTurn());
                 break;
             case GameStates.EnemyTurn:
@@ -38,21 +38,4 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    //public void ChangeTurn()
-    //{
-    //    if (currentState == GameStates.EnemyTurn)
-    //    {
-    //        enemyActions.RandomiseTurn();
-    //        Debug.Log(enemyActions.randomEnum);
-    //        StartCoroutine(TakeTimeForTurn());
-    //        currentState = GameStates.PlayerTurn;
-    //        Debug.Log(currentState);
-    //    }
-    //    if (currentState == GameStates.PlayerTurn)
-    //    {
-    //        currentState = GameStates.EnemyTurn;
-    //        Debug.Log(currentState);
-    //    }
-    //}
 }

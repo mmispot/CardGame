@@ -3,26 +3,35 @@ using UnityEngine;
 public class EnemyActions : MonoBehaviour
 {
     public GameManager gameManager;
-    public int randomEnum;
-    
-    public void RandomiseTurn()
+
+    private int enemyHealth;
+    private int intelligenceStat; //if intelligence is high, more likely to heal or defend
+    private int randomIntelCheck;
+
+    public void Start()
     {
-        randomEnum = Random.Range(1, 3);
+        enemyHealth = 100;
+        intelligenceStat = 50; //for testing purposes
     }
 
-    public void ChooseAction()
+    public void RandomiseAction()
     {
-        if (randomEnum == 1)
+        randomIntelCheck = Random.Range(1, 100);
+    }
+
+    public void DoAction()
+    {
+        if (enemyHealth < enemyHealth / 4 && intelligenceStat > randomIntelCheck) //if health is less than 25%
         {
-            Attack();
+            Heal();
         }
-        else if (randomEnum == 2)
+        else if (enemyHealth < enemyHealth / 2 && intelligenceStat > randomIntelCheck)
         {
             Defend();
         }
-        else if (randomEnum == 3)
+        else
         {
-            Heal();
+            Attack();
         }
     }
 
@@ -31,6 +40,7 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy attacked");
+            randomEnum = 0;
             gameManager.EndTurn();
         }
     }
@@ -40,6 +50,7 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy defended");
+            randomEnum = 0;
             gameManager.EndTurn();
         }
     }
@@ -49,6 +60,7 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy heal");
+            randomEnum = 0;
             gameManager.EndTurn();
         }
     }
