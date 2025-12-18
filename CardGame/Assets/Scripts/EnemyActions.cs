@@ -1,18 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyActions : MonoBehaviour
 {
     public GameManager gameManager;
+    public PlayerActions playerActions;
 
     private int enemyHealth;
     private int intelligenceStat; //if intelligence is high, more likely to heal or defend
     private int randomIntelCheck;
+    public float damageAmount = 10;
 
+    public float totalEHealth = 100;
+    public float currentEHealth;
+    [SerializeField] Image healthBar;
     public void Start()
     {
         enemyHealth = 100;
         intelligenceStat = 50; //for testing purposes
+
+        playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
+
+        currentEHealth = totalEHealth;
     }
+
+    public void Update()
+    {
+        if (healthBar != null)
+        {
+            healthBar.fillAmount = currentEHealth / 100;
+        }
+
+        if (currentEHealth <= 0)
+        {
+            //Despawn enemy and continue with map
+        }
+    }
+
+
 
     public void RandomiseAction()
     {
@@ -40,8 +65,8 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy attacked");
-            randomEnum = 0;
             gameManager.EndTurn();
+            playerActions.currentPHealth -= damageAmount;
         }
     }
 
@@ -50,7 +75,6 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy defended");
-            randomEnum = 0;
             gameManager.EndTurn();
         }
     }
@@ -60,7 +84,6 @@ public class EnemyActions : MonoBehaviour
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
             Debug.Log("enemy heal");
-            randomEnum = 0;
             gameManager.EndTurn();
         }
     }
