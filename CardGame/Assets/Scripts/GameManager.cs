@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
             case GameStates.PlayerTurn:
                 currentState = GameStates.EnemyTurn;
                 Debug.Log(currentState);
-                enemyActions.RandomiseAction();
                 StartCoroutine(TakeTimeForTurn());
                 break;
             case GameStates.EnemyTurn:

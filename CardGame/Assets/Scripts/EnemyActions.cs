@@ -6,9 +6,8 @@ public class EnemyActions : MonoBehaviour
     public GameManager gameManager;
     public PlayerActions playerActions;
 
-    private int enemyHealth;
     private int intelligenceStat; //if intelligence is high, more likely to heal or defend
-    private int randomIntelCheck;
+    [SerializeField] private int randomIntelCheck;
     public float damageAmount = 10;
 
     public float totalEHealth = 100;
@@ -16,8 +15,8 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] Image healthBar;
     public void Start()
     {
-        enemyHealth = 100;
-        intelligenceStat = 50; //for testing purposes
+
+        intelligenceStat = 100; //for testing purposes
 
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
 
@@ -37,22 +36,17 @@ public class EnemyActions : MonoBehaviour
         }
     }
 
-
-
-    public void RandomiseAction()
-    {
-        randomIntelCheck = Random.Range(1, 100);
-    }
-
     public void DoAction()
     {
-        if (enemyHealth < enemyHealth / 4 && intelligenceStat > randomIntelCheck) //if health is less than 25%
-        {
-            Heal();
-        }
-        else if (enemyHealth < enemyHealth / 2 && intelligenceStat > randomIntelCheck)
+        randomIntelCheck = Random.Range(1, 100);
+
+        if (currentEHealth < (totalEHealth / 4) && intelligenceStat >= randomIntelCheck) //if health is less than 25%
         {
             Defend();
+        }
+        else if (currentEHealth < (totalEHealth / 2) && intelligenceStat >= randomIntelCheck)
+        {
+            Heal();
         }
         else
         {
@@ -83,7 +77,7 @@ public class EnemyActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
-            Debug.Log("enemy heal");
+            Debug.Log("enemy healed");
             gameManager.EndTurn();
         }
     }
