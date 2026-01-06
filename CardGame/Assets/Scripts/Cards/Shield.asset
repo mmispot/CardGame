@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Shield
   m_EditorClassIdentifier: 
   cardName: Shield
-  flavorText: 
+  flavorText: Defend yourself against bugs with a magical shield.
   cardImage: {fileID: 21300000, guid: a78c79f365ef4e64fa80ad0a9ddd81d9, type: 3}
-  cardCost: 0
-  firstType: 3
+  artworkImage: {fileID: 21300000, guid: 2e9ed8466ec15b342ba34686d2b5f2c6, type: 3}
+  cardCost: 3
+  firstType: 1
   actionValue: 10

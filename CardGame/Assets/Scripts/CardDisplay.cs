@@ -18,7 +18,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text manaCost;
     public TMP_Text powerText; //block, attack, heal amount etc.
 
-    void Start()
+    public void Update()
     {
         nameText.text = card.cardName;
         flavorText.text = card.flavorText;
