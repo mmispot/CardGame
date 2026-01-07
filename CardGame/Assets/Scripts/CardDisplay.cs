@@ -18,6 +18,8 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text manaCost;
     public TMP_Text powerText; //block, attack, heal amount etc.
 
+    public RectTransform rectTransform;
+
     public void Update()
     {
         nameText.text = card.cardName;
@@ -27,5 +29,12 @@ public class CardDisplay : MonoBehaviour
         artworkImage.sprite = card.artworkImage;
         manaCost.text = card.cardCost.ToString();
         powerText.text = card.actionValue.ToString();
+    }
+
+    public void CardSelected()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        rectTransform.anchoredPosition += new Vector2(0, 50);
+        Debug.Log("card selected");
     }
 }

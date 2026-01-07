@@ -15,6 +15,8 @@ public class CardManager : MonoBehaviour
 
     public int maxHandSize = 4;
 
+    public bool currentSelectedCard = false;
+
     public void Start()
     {
         DrawPlayerHand();
@@ -32,12 +34,13 @@ public class CardManager : MonoBehaviour
     }
     public void SelectCard()
     {
-        //clicked card
-        //transform up slightly
-        // set as active card to be used in variable
 
-        this.transform.up += new Vector3(0, 0.2f, 0);
-        Debug.Log("card selected");
+        if (currentSelectedCard == false)
+        {
+            cardDisplayScript.CardSelected();
+            currentSelectedCard = true;
+        }
+        //if clicked on another card, unselect previous and select new one
     }
     public void UseCard()
     {
