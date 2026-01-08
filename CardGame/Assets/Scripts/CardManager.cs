@@ -13,9 +13,9 @@ public class CardManager : MonoBehaviour
     public List<CardBase> playerHand;
     public List<CardBase> deck;
 
-    public int maxHandSize = 4;
+    public int maxHandSize = 5;
 
-    public bool currentSelectedCard = false;
+    public GameObject currentSelectedCard;
 
     public void Start()
     {
@@ -24,37 +24,42 @@ public class CardManager : MonoBehaviour
 
     public void DrawPlayerHand()
     {
-        deck = new List<CardBase>();
+        playerHand = new List<CardBase>();
         for (int i = 0; i < maxHandSize; i++)
         {
             int randomIndex = Random.Range(0, allCards.Count);
-            deck.Add(allCards[randomIndex]);
-            cardDisplay[i].card = deck[i];
+            playerHand.Add(allCards[randomIndex]);
+            cardDisplay[i].card = playerHand[i];
         }
     }
     public void SelectCard()
     {
-
-        if (currentSelectedCard == false)
-        {
-            cardDisplayScript.CardSelected();
-            currentSelectedCard = true;
-        }
-        //if clicked on another card, unselect previous and select new one
+        cardDisplayScript.CardSelected();
     }
+
+    public void SaveCard(GameObject cardToSelect)
+    {
+        currentSelectedCard = cardToSelect;
+    }    
+
     public void UseCard()
     {
         //use active card's action on player/enemy
+
 
         DiscardCard();
     }
     public void DrawCards()
     {
-        //if hand size < max hand size draw card from deck to hand
+        if (playerHand.Count < maxHandSize)
+        {
+            
+        }    
     }
 
     public void DiscardCard()
     {
         //remove used card from hand
+
     }
 }

@@ -20,6 +20,8 @@ public class CardDisplay : MonoBehaviour
 
     public RectTransform rectTransform;
 
+    public CardManager cardManager;
+
     public void Update()
     {
         nameText.text = card.cardName;
@@ -33,6 +35,9 @@ public class CardDisplay : MonoBehaviour
 
     public void CardSelected()
     {
+        cardManager.SaveCard(this.gameObject);
+
+        //move card up to indicate selection
         rectTransform = GetComponent<RectTransform>();
         rectTransform.anchoredPosition += new Vector2(0, 50);
         Debug.Log("card selected");

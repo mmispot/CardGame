@@ -581,6 +581,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 578559259}
+    - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       propertyPath: rectTransform
       value: 
       objectReference: {fileID: 568654508}
@@ -705,16 +709,27 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 578559259}
           m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: SelectCard
-          m_Mode: 1
+          m_MethodName: SaveCard
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 568654509}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &568654511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+  m_PrefabInstance: {fileID: 568654507}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568654509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a6e3981ee5a0143bac6b6df6e9f49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &578559257
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +780,7 @@ MonoBehaviour:
   - {fileID: 698566936}
   - {fileID: 1352844912}
   - {fileID: 1591779182}
+  - {fileID: 568654511}
   cardDisplayScript: {fileID: 0}
   allCards:
   - {fileID: 11400000, guid: 1dae1c896bf5b56409af8932de95ba8f, type: 2}
@@ -772,8 +788,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9fe93d59cbf54114997f83ae32be0471, type: 2}
   playerHand: []
   deck: []
-  maxHandSize: 4
-  currentSelectedCard: 0
+  maxHandSize: 5
+  currentSelectedCard: {fileID: 0}
 --- !u!1 &587757490
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,6 +930,10 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 578559259}
     - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       propertyPath: rectTransform
       value: 
@@ -1459,6 +1479,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 578559259}
+    - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       propertyPath: rectTransform
       value: 
       objectReference: {fileID: 1352844911}
@@ -1589,11 +1613,11 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 578559259}
           m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: SelectCard
-          m_Mode: 1
+          m_MethodName: SaveCard
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 373934087}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1611,6 +1635,10 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 578559259}
     - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       propertyPath: rectTransform
       value: 
@@ -1742,11 +1770,11 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 578559259}
           m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: SelectCard
-          m_Mode: 1
+          m_MethodName: SaveCard
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 315023400}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1808,11 +1836,11 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 578559259}
           m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: SelectCard
-          m_Mode: 1
+          m_MethodName: SaveCard
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1822161082}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1858,11 +1886,11 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 578559259}
           m_TargetAssemblyTypeName: CardManager, Assembly-CSharp
-          m_MethodName: SelectCard
-          m_Mode: 1
+          m_MethodName: SaveCard
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1855693116}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2126,6 +2154,10 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 578559259}
     - target: {fileID: 2455362575743017372, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       propertyPath: rectTransform
       value: 
