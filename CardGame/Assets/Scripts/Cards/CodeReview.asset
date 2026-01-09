@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9400745f6a7ab1341b1376ed2b05e361, type: 3}
-  m_Name: Shield
+  m_Name: CodeReview
   m_EditorClassIdentifier: 
-  cardName: Shield
-  flavorText: Defend yourself against bugs with a magical shield.
-  cardImage: {fileID: 21300000, guid: a78c79f365ef4e64fa80ad0a9ddd81d9, type: 3}
-  artworkImage: {fileID: 21300000, guid: 2e9ed8466ec15b342ba34686d2b5f2c6, type: 3}
-  cardCost: 1
-  firstType: 1
-  actionValue: 10
+  cardName: Code Review
+  flavorText: Review your code and do some damage!
+  cardImage: {fileID: 0}
+  artworkImage: {fileID: 0}
+  cardCost: 3
+  firstType: 0
+  actionValue: 15

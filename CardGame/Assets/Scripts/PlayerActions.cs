@@ -5,16 +5,19 @@ using static UnityEngine.InputSystem.DefaultInputActions;
 public class PlayerActions : MonoBehaviour
 {
     public GameManager gameManager;
+    public CardManager cardManager;
     public EnemyActions enemyActions;
 
     public float totalPHealth = 100;
     public float currentPHealth;
     [SerializeField] Image healthBar;
 
+    public float shield = 0;
+
+
     public void Start()
     {
         currentPHealth = totalPHealth;
-
         enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
     }
 
@@ -26,17 +29,17 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void Attack(int actionValue)
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
+            enemyActions.currentEHealth -= actionValue;
             Debug.Log("player attacked");
             gameManager.EndTurn();
-            enemyActions.currentEHealth -= 10;
         }
     }
 
-    public void Defend()
+    public void Defend(int actionValue)
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
@@ -45,7 +48,7 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    public void Heal()
+    public void Heal(int actionValue)
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {

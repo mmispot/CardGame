@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public EnemyActions enemyActions;
 
     public GameStates currentState;
+    public CardManager cardManager;
+
     void Start()
     {
         currentState = GameStates.PlayerTurn;
@@ -27,11 +29,13 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.PlayerTurn:
+                cardManager.ClearDeck();
                 currentState = GameStates.EnemyTurn;
                 Debug.Log(currentState);
                 StartCoroutine(TakeTimeForTurn());
                 break;
             case GameStates.EnemyTurn:
+                cardManager.DrawPlayerHand();
                 currentState = GameStates.PlayerTurn;
                 Debug.Log(currentState);
                 break;

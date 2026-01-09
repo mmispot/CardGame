@@ -33,12 +33,10 @@ public class CardDisplay : MonoBehaviour
         powerText.text = card.actionValue.ToString();
     }
 
-    public void CardSelected()
+    public void VisualSelected()
     {
-        cardManager.SaveCard(this.gameObject);
-
         //move card up to indicate selection
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition += new Vector2(0, 50);
         Debug.Log("card selected");
     }
