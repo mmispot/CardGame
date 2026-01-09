@@ -35,9 +35,17 @@ public class CardDisplay : MonoBehaviour
 
     public void VisualSelected()
     {
-        //move card up to indicate selection
+        //ADD NULL CHECK SO MULTIPLE CARDS CANT BE SELECTED, IF CARD IS ALREADY SELECTED THEN GO TO USECARD
+
         rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition += new Vector2(0, 50);
-        Debug.Log("card selected");
+        Debug.Log("Card Selected");
+    }
+
+    public void VisualDeselect()
+    {
+        rectTransform = gameObject.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition -= new Vector2(0, 50);
+        Debug.Log("Card Deselected");
     }
 }

@@ -56,11 +56,24 @@ public class EnemyActions : MonoBehaviour
 
     public void Attack()
     {
+        //FIX SHIELD LATER
         if (gameManager.currentState == GameStates.EnemyTurn)
         {
-            Debug.Log("enemy attacked");
-            gameManager.EndTurn();
-            playerActions.currentPHealth -= damageAmount;
+            Mathf.Clamp(playerActions.shield, 0, 100);
+            Mathf.Clamp(playerActions.currentPHealth, 0, 100);
+
+            if (playerActions.shield > 0)
+            {
+                playerActions.shield -= damageAmount;
+                float remainingdamage = damageAmount - playerActions.shield;
+
+                if (remainingdamage > 0)
+                {
+                    playerActions.currentPHealth -= remainingdamage;
+                }
+                Debug.Log("enemy attacked");
+                gameManager.EndTurn();
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.DefaultInputActions;
@@ -10,9 +11,12 @@ public class PlayerActions : MonoBehaviour
 
     public float totalPHealth = 100;
     public float currentPHealth;
-    [SerializeField] Image healthBar;
+    [SerializeField] private Image healthBar;
 
     public float shield = 0;
+
+    [SerializeField] private TMP_Text health;
+    [SerializeField] private TMP_Text defense;
 
 
     public void Start()
@@ -27,6 +31,9 @@ public class PlayerActions : MonoBehaviour
         {
             healthBar.fillAmount = currentPHealth / 100;
         }
+
+        health.text = currentPHealth.ToString();
+        defense.text = shield.ToString();
     }
 
     public void Attack(int actionValue)
@@ -43,6 +50,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
+            shield += actionValue;
             Debug.Log("player defended");
             gameManager.EndTurn();
         }
@@ -52,6 +60,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
+            currentPHealth += actionValue;
             Debug.Log("player healed");
             gameManager.EndTurn();
         }

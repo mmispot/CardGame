@@ -55,34 +55,49 @@ public class CardManager : MonoBehaviour
     {
         currentSelectedCard = cardToSelect;
 
-        //get card component of current selected card (chosenCard)
         chosenDisplay = currentSelectedCard.GetComponent<CardDisplay>();
         chosenDisplay.VisualSelected();
+
+        UseCard();
     }
 
     public void UseCard()
     {
-        //use active card's action on player/enemy
-        //check what type it is, then do function
-        if (chosenDisplay.card.firstType == 0)
+        if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack)
         {
             playerActions.Attack(chosenDisplay.card.actionValue);
+            DiscardCard(currentSelectedCard);
+            cardDisplayScript.VisualDeselect();
+            return;
         }
-
-        DiscardCard();
+        else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
+        {
+            playerActions.Defend(chosenDisplay.card.actionValue);
+            DiscardCard(currentSelectedCard);
+            cardDisplayScript.VisualDeselect();
+            return;
+        }
+        else if (chosenDisplay.card.firstType == CardBase.actionTypes.Heal)
+        {
+            playerActions.Heal(chosenDisplay.card.actionValue);
+            DiscardCard(currentSelectedCard);
+            cardDisplayScript.VisualDeselect();
+            return;
+        }
+        Debug.Log(chosenDisplay.card.firstType);
     }
     public void DrawCards()
     {
         if (playerHand.Count < maxHandSize)
         {
-            
+            //draw cards until playerHand is full
+
         }    
     }
 
-    public void DiscardCard()
+    public void DiscardCard(GameObject card)
     {
         //remove used card from hand
-
     }
 
 }
