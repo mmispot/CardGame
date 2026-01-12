@@ -209,7 +209,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mana:'
+  m_text: 'Coffee:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1373,8 +1373,8 @@ MonoBehaviour:
   playerActions: {fileID: 0}
   intelligenceStat: 0
   randomIntelCheck: 0
-  damageAmount: 10
-  totalEHealth: 100
+  damageAmount: 5
+  totalEHealth: 50
   currentEHealth: 0
   currentEDefense: 0
   healthBar: {fileID: 1028892565}

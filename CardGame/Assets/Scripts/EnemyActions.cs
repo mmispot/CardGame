@@ -9,9 +9,9 @@ public class EnemyActions : MonoBehaviour
 
     [SerializeField] private int intelligenceStat; //if intelligence is high, more likely to heal or defend
     [SerializeField] private int randomIntelCheck;
-    public float damageAmount = 10;
+    public float damageAmount;
 
-    public float totalEHealth = 100;
+    public float totalEHealth;
     public float currentEHealth;
     public float currentEDefense;
     [SerializeField] Image healthBar;
@@ -21,6 +21,9 @@ public class EnemyActions : MonoBehaviour
 
     public void Start()
     {
+        totalEHealth = 50;
+        damageAmount = 5;
+        currentEDefense = 0;
 
         intelligenceStat = 100; //for testing purposes
 
@@ -33,7 +36,7 @@ public class EnemyActions : MonoBehaviour
     {
         if (healthBar != null)
         {
-            healthBar.fillAmount = currentEHealth / 100;
+            healthBar.fillAmount = currentEHealth / totalEHealth;
         }
 
         health.text = currentEHealth.ToString();

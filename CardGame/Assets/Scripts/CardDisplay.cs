@@ -22,6 +22,16 @@ public class CardDisplay : MonoBehaviour
 
     public CardManager cardManager;
 
+    float startPosX;
+    float startPosY;
+
+    public void Start()
+    {
+        rectTransform = gameObject.GetComponent<RectTransform>();
+        startPosX = gameObject.transform.position.x;
+        startPosY = gameObject.transform.position.y;
+    }
+
     public void Update()
     {
         nameText.text = card.cardName;
@@ -35,13 +45,11 @@ public class CardDisplay : MonoBehaviour
 
     public void VisualSelected()
     {
-        rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition += new Vector2(0, 50);
     }
 
     public void VisualDeselect()
     {
-        rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition -= new Vector2(0, 50);
     }
 }

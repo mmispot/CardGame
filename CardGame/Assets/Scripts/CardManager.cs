@@ -56,7 +56,6 @@ public class CardManager : MonoBehaviour
 
     public void SaveCard(GameObject cardToSelect)
     {
-
         if (currentSelectedCard == null)
         {
             currentSelectedCard = cardToSelect;
@@ -93,18 +92,21 @@ public class CardManager : MonoBehaviour
         if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack )
         {
             playerActions.Attack(chosenDisplay.card.actionValue);
+            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
         {
             playerActions.Defend(chosenDisplay.card.actionValue);
+            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Heal)
         {
             playerActions.Heal(chosenDisplay.card.actionValue);
+            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
@@ -113,12 +115,16 @@ public class CardManager : MonoBehaviour
             if (chosenDisplay.card.cardName == "Windows Update")
             {
                 Debug.Log("Skip turn");
+                playerActions.Attack(15);
+                chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
+                gameManager.currentState = GameStates.EnemyTurn;
                 return;
             }
             else if (chosenDisplay.card.cardName == "Free Coffee")
             {
                 gameManager.manaCoffee =+ chosenDisplay.card.actionValue;
+                chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 return;
             }
@@ -128,6 +134,7 @@ public class CardManager : MonoBehaviour
     public void DrawCards()
     {
         ReactivateCardDisplays();
+
         for (int i = playerHand.Count; i < maxHandSize; i++)
         {
             int randomIndex = Random.Range(0, allCards.Count);
