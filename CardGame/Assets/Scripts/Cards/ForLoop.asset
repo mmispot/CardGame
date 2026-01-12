@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: For Loop
   flavorText: An easy solution for most bugs
   cardImage: {fileID: 21300000, guid: bbe75f2be2be09b4a99af9dae9a3322c, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: 748b5080a9643d74eb4f2c44d1d19759, type: 3}
   cardCost: 1
   firstType: 0
   actionValue: 5

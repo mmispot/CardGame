@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Lock In
   flavorText: Get focused!
   cardImage: {fileID: 21300000, guid: 16aeb4676126dfa449d8de7768eeeae3, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: be6fad4906adabf42b44b89f36a66c5d, type: 3}
   cardCost: 2
   firstType: 2
   actionValue: 10

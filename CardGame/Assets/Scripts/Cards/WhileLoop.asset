@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: While Loop
   flavorText: 'Great value, but 50% chance of an ''infinite loop'' and doing 2dmg. '
   cardImage: {fileID: 21300000, guid: bbe75f2be2be09b4a99af9dae9a3322c, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: 3c04f36dc19d03f40a6d58dadc2c9a0a, type: 3}
   cardCost: 2
   firstType: 0
   actionValue: 10

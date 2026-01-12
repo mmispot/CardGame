@@ -6,7 +6,7 @@ public class EnemyActions : MonoBehaviour
     public GameManager gameManager;
     public PlayerActions playerActions;
 
-    private int intelligenceStat; //if intelligence is high, more likely to heal or defend
+    [SerializeField] private int intelligenceStat; //if intelligence is high, more likely to heal or defend
     [SerializeField] private int randomIntelCheck;
     public float damageAmount = 10;
 

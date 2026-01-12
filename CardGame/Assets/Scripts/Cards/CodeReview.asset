@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Code Review
   flavorText: Review your code and do some damage!
   cardImage: {fileID: 21300000, guid: bbe75f2be2be09b4a99af9dae9a3322c, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: d75545452729f074483361fb1ff4b9c0, type: 3}
   cardCost: 3
   firstType: 0
   actionValue: 15

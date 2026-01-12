@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Anger Management
   flavorText: Fortify your mind to protect from bugs!
   cardImage: {fileID: 21300000, guid: a78c79f365ef4e64fa80ad0a9ddd81d9, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: 94f3050e7be092245b323cafdfebd86b, type: 3}
   cardCost: 2
   firstType: 1
   actionValue: 15

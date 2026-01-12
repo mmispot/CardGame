@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: If Statement
   flavorText: An easy solution to some bugs.
   cardImage: {fileID: 21300000, guid: bbe75f2be2be09b4a99af9dae9a3322c, type: 3}
-  artworkImage: {fileID: 0}
+  artworkImage: {fileID: 21300000, guid: 0afe6111e45240b4db7fd8f9bef37a36, type: 3}
   cardCost: 1
   firstType: 0
   actionValue: 5
