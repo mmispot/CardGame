@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,12 @@ public class EnemyActions : MonoBehaviour
 
     public float totalEHealth = 100;
     public float currentEHealth;
+    public float currentEDefense;
     [SerializeField] Image healthBar;
+
+    [SerializeField] private TMP_Text health;
+    [SerializeField] private TMP_Text defense;
+
     public void Start()
     {
 
@@ -29,6 +35,9 @@ public class EnemyActions : MonoBehaviour
         {
             healthBar.fillAmount = currentEHealth / 100;
         }
+
+        health.text = currentEHealth.ToString();
+        defense.text = currentEDefense.ToString();
     }
 
     public void DoAction()
@@ -69,13 +78,14 @@ public class EnemyActions : MonoBehaviour
 
     public void Defend()
     {
-            Debug.Log("enemy defended");
-            gameManager.EndTurn();
+        currentEDefense += 5;
+        
+        gameManager.EndTurn();
     }
 
     public void Heal()
     {
-            Debug.Log("enemy healed");
-            gameManager.EndTurn();
+        currentEHealth += 10;
+        gameManager.EndTurn();
     }
 }

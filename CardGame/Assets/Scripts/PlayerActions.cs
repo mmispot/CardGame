@@ -18,7 +18,6 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private TMP_Text health;
     [SerializeField] private TMP_Text defense;
 
-
     public void Start()
     {
         currentPHealth = totalPHealth;
@@ -40,9 +39,17 @@ public class PlayerActions : MonoBehaviour
     {
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
-            enemyActions.currentEHealth -= actionValue;
-            Debug.Log("player attacked");
-            gameManager.EndTurn();
+            if (actionValue > enemyActions.currentEDefense)
+            {
+                float dmgAfterDef = actionValue - enemyActions.currentEDefense;
+                enemyActions.currentEDefense = 0;
+                enemyActions.currentEHealth -= dmgAfterDef;
+            }
+            else
+            {
+                enemyActions.currentEDefense -= actionValue;
+            }
+            Debug.Log("player attacked enemy");
         }
     }
 
@@ -52,7 +59,6 @@ public class PlayerActions : MonoBehaviour
         {
             shield += actionValue;
             Debug.Log("player defended");
-            gameManager.EndTurn();
         }
     }
 
@@ -62,7 +68,6 @@ public class PlayerActions : MonoBehaviour
         {
             currentPHealth += actionValue;
             Debug.Log("player healed");
-            gameManager.EndTurn();
         }
     }
 }

@@ -34,14 +34,6 @@ public class CardManager : MonoBehaviour
         discardPile = new List<CardBase>();
     }
 
-    public void Update()
-    {
-        if (playerHand == null)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
     IEnumerator WaitForSeconds()
     {
         yield return new WaitForSeconds(1);
@@ -64,58 +56,103 @@ public class CardManager : MonoBehaviour
 
     public void SaveCard(GameObject cardToSelect)
     {
-        currentSelectedCard = cardToSelect;
 
-        chosenDisplay = currentSelectedCard.GetComponent<CardDisplay>();
-        chosenDisplay.VisualSelected();
+        if (currentSelectedCard == null)
+        {
+            currentSelectedCard = cardToSelect;
 
-        UseCard();
+            chosenDisplay = currentSelectedCard.GetComponent<CardDisplay>();
+            chosenDisplay.VisualSelected();
+            CheckManaCost();
+            currentSelectedCard = null;
+
+            WaitForSeconds();
+            chosenDisplay.VisualDeselect();
+        }
+        else
+        {
+            Debug.Log("A card is already selected");
+        }
+    }
+
+    public void CheckManaCost()
+    {
+        if (gameManager.manaCoffee >= chosenDisplay.card.cardCost)
+        {
+            gameManager.manaCoffee = gameManager.manaCoffee - chosenDisplay.card.cardCost;
+            UseCard();
+        }
+        else
+        {
+            Debug.Log("Not enough mana to play this card");
+        }
     }
 
     public void UseCard()
     {
-        if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack)
+
+        if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack )
         {
             playerActions.Attack(chosenDisplay.card.actionValue);
-            WaitForSeconds();
-            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
         {
             playerActions.Defend(chosenDisplay.card.actionValue);
-            WaitForSeconds();
-            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Heal)
         {
             playerActions.Heal(chosenDisplay.card.actionValue);
-            WaitForSeconds();
-            chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
+        }
+        else if (chosenDisplay.card.firstType == CardBase.actionTypes.Buff || chosenDisplay.card.firstType == CardBase.actionTypes.Debuff)
+        {
+            if (chosenDisplay.card.cardName == "Windows Update")
+            {
+                Debug.Log("Skip turn");
+                DiscardChosenCard();
+                return;
+            }
+            else if (chosenDisplay.card.cardName == "Free Coffee")
+            {
+                gameManager.manaCoffee =+ chosenDisplay.card.actionValue;
+                DiscardChosenCard();
+                return;
+            }
         }
 
     }
     public void DrawCards()
     {
-        removedCard.SetActive(true);
+        ReactivateCardDisplays();
         for (int i = playerHand.Count; i < maxHandSize; i++)
         {
             int randomIndex = Random.Range(0, allCards.Count);
             playerHand.Add(allCards[randomIndex]);
+            deck.Remove(allCards[randomIndex]);
             cardDisplay[i].card = playerHand[i];
         } 
     }
 
     public void DiscardChosenCard()
     {
-        removedCard = currentSelectedCard;
-        removedCard.SetActive(false);
+        currentSelectedCard.SetActive(false);
         discardPile.Add(chosenDisplay.card);
         playerHand.Remove(chosenDisplay.card);
+    }
+
+    public void ReactivateCardDisplays()
+    {
+        for (int i = 0; i < cardDisplay.Length; i++)
+        {
+            if (cardDisplay[i] != null)
+            {
+                cardDisplay[i].gameObject.SetActive(true);
+            }
+        }
     }
 }
