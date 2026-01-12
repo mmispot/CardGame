@@ -75,14 +75,12 @@ public class EnemyActions : MonoBehaviour
         {
             playerActions.shield -= incomingDamage;
         }
-        Debug.Log("enemy attacked");
         gameManager.EndTurn();
     }
 
     public void Defend()
     {
         currentEDefense += 5;
-        
         gameManager.EndTurn();
     }
 

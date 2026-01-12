@@ -28,8 +28,6 @@ public class CardDisplay : MonoBehaviour
     public void Start()
     {
         rectTransform = gameObject.GetComponent<RectTransform>();
-        startPosX = gameObject.transform.position.x;
-        startPosY = gameObject.transform.position.y;
     }
 
     public void Update()

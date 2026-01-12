@@ -49,7 +49,6 @@ public class PlayerActions : MonoBehaviour
             {
                 enemyActions.currentEDefense -= actionValue;
             }
-            Debug.Log("player attacked enemy");
         }
     }
 
@@ -58,7 +57,6 @@ public class PlayerActions : MonoBehaviour
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
             shield += actionValue;
-            Debug.Log("player defended");
         }
     }
 
@@ -67,7 +65,6 @@ public class PlayerActions : MonoBehaviour
         if (gameManager.currentState == GameStates.PlayerTurn)
         {
             currentPHealth += actionValue;
-            Debug.Log("player healed");
         }
     }
 }
