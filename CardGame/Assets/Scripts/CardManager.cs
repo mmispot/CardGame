@@ -14,10 +14,12 @@ public class CardManager : MonoBehaviour
 
     public List<CardBase> playerHand;
     public List<CardBase> deck;
+    public List<CardBase> discardPile;
 
     public int maxHandSize = 5;
 
     public GameObject currentSelectedCard;
+    public GameObject removedCard;
     public CardDisplay chosenDisplay; 
 
     public EnemyActions enemyActions;
@@ -28,6 +30,8 @@ public class CardManager : MonoBehaviour
     {
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
         DrawPlayerHand();
+
+        discardPile = new List<CardBase>();
     }
 
     public void Update()
@@ -75,6 +79,7 @@ public class CardManager : MonoBehaviour
             playerActions.Attack(chosenDisplay.card.actionValue);
             WaitForSeconds();
             chosenDisplay.VisualDeselect();
+            DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
@@ -82,6 +87,7 @@ public class CardManager : MonoBehaviour
             playerActions.Defend(chosenDisplay.card.actionValue);
             WaitForSeconds();
             chosenDisplay.VisualDeselect();
+            DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Heal)
@@ -89,16 +95,27 @@ public class CardManager : MonoBehaviour
             playerActions.Heal(chosenDisplay.card.actionValue);
             WaitForSeconds();
             chosenDisplay.VisualDeselect();
+            DiscardChosenCard();
             return;
         }
 
     }
     public void DrawCards()
     {
-        if (playerHand.Count < maxHandSize)
+        removedCard.SetActive(true);
+        for (int i = playerHand.Count; i < maxHandSize; i++)
         {
-            //draw cards until playerHand is full
+            int randomIndex = Random.Range(0, allCards.Count);
+            playerHand.Add(allCards[randomIndex]);
+            cardDisplay[i].card = playerHand[i];
+        } 
+    }
 
-        }    
+    public void DiscardChosenCard()
+    {
+        removedCard = currentSelectedCard;
+        removedCard.SetActive(false);
+        discardPile.Add(chosenDisplay.card);
+        playerHand.Remove(chosenDisplay.card);
     }
 }
