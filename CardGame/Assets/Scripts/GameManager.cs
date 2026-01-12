@@ -29,15 +29,15 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.PlayerTurn:
-                cardManager.ClearDeck();
                 currentState = GameStates.EnemyTurn;
                 Debug.Log(currentState);
+                cardManager.ClearDeck();
                 StartCoroutine(TakeTimeForTurn());
                 break;
             case GameStates.EnemyTurn:
-                cardManager.DrawPlayerHand();
                 currentState = GameStates.PlayerTurn;
                 Debug.Log(currentState);
+                cardManager.DrawPlayerHand();
                 break;
         }
     }

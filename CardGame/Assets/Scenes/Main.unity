@@ -802,6 +802,7 @@ MonoBehaviour:
   chosenDisplay: {fileID: 0}
   enemyActions: {fileID: 0}
   playerActions: {fileID: 0}
+  gameManager: {fileID: 1943140254}
 --- !u!1 &587757490
 GameObject:
   m_ObjectHideFlags: 0

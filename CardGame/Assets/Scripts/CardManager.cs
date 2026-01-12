@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class CardManager : MonoBehaviour
 
     public EnemyActions enemyActions;
     public PlayerActions playerActions;
+    public GameManager gameManager;
 
     public void Start()
     {
@@ -34,6 +36,11 @@ public class CardManager : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator WaitForSeconds()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public void DrawPlayerHand()
@@ -66,25 +73,25 @@ public class CardManager : MonoBehaviour
         if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack)
         {
             playerActions.Attack(chosenDisplay.card.actionValue);
-            DiscardCard(currentSelectedCard);
-            cardDisplayScript.VisualDeselect();
+            WaitForSeconds();
+            chosenDisplay.VisualDeselect();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
         {
             playerActions.Defend(chosenDisplay.card.actionValue);
-            DiscardCard(currentSelectedCard);
-            cardDisplayScript.VisualDeselect();
+            WaitForSeconds();
+            chosenDisplay.VisualDeselect();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Heal)
         {
             playerActions.Heal(chosenDisplay.card.actionValue);
-            DiscardCard(currentSelectedCard);
-            cardDisplayScript.VisualDeselect();
+            WaitForSeconds();
+            chosenDisplay.VisualDeselect();
             return;
         }
-        Debug.Log(chosenDisplay.card.firstType);
+
     }
     public void DrawCards()
     {
@@ -94,10 +101,4 @@ public class CardManager : MonoBehaviour
 
         }    
     }
-
-    public void DiscardCard(GameObject card)
-    {
-        //remove used card from hand
-    }
-
 }

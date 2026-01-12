@@ -29,17 +29,11 @@ public class EnemyActions : MonoBehaviour
         {
             healthBar.fillAmount = currentEHealth / 100;
         }
-
-        if (currentEHealth <= 0)
-        {
-            //Despawn enemy and continue with map
-        }
     }
 
     public void DoAction()
     {
         randomIntelCheck = Random.Range(1, 100);
-
         if (currentEHealth < (totalEHealth / 4) && intelligenceStat >= randomIntelCheck) //if health is less than 25%
         {
             Defend();
@@ -50,48 +44,38 @@ public class EnemyActions : MonoBehaviour
         }
         else
         {
-            Attack();
+            Attack(damageAmount);
         }
     }
 
-    public void Attack()
+    public void Attack(float incomingDamage)
     {
-        //FIX SHIELD LATER
-        if (gameManager.currentState == GameStates.EnemyTurn)
+        Mathf.Clamp(playerActions.shield, 0, 100);
+        Mathf.Clamp(playerActions.currentPHealth, 0, 100);
+
+        if (incomingDamage > playerActions.shield)
         {
-            Mathf.Clamp(playerActions.shield, 0, 100);
-            Mathf.Clamp(playerActions.currentPHealth, 0, 100);
-
-            if (playerActions.shield > 0)
-            {
-                playerActions.shield -= damageAmount;
-                float remainingdamage = damageAmount - playerActions.shield;
-
-                if (remainingdamage > 0)
-                {
-                    playerActions.currentPHealth -= remainingdamage;
-                }
-                Debug.Log("enemy attacked");
-                gameManager.EndTurn();
-            }
+            float damageAfterShield = incomingDamage - playerActions.shield;
+            playerActions.shield = 0;
+            playerActions.currentPHealth -= damageAfterShield;
         }
+        else
+        {
+            playerActions.shield -= incomingDamage;
+        }
+        Debug.Log("enemy attacked");
+        gameManager.EndTurn();
     }
 
     public void Defend()
     {
-        if (gameManager.currentState == GameStates.EnemyTurn)
-        {
             Debug.Log("enemy defended");
             gameManager.EndTurn();
-        }
     }
 
     public void Heal()
     {
-        if (gameManager.currentState == GameStates.EnemyTurn)
-        {
             Debug.Log("enemy healed");
             gameManager.EndTurn();
-        }
     }
 }
