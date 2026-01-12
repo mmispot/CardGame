@@ -62,12 +62,11 @@ public class CardManager : MonoBehaviour
             currentSelectedCard = cardToSelect;
 
             chosenDisplay = currentSelectedCard.GetComponent<CardDisplay>();
-            chosenDisplay.VisualSelected();
+
             CheckManaCost();
             currentSelectedCard = null;
 
             WaitForSeconds();
-            chosenDisplay.VisualDeselect();
         }
         else
         {
