@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
         manaCoffee = 4;
 
+        currentEncounterIndex = 0;
+
         enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
     }
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        currentEncounterIndex =+ 2;
+        currentEncounterIndex += 2;
         Instantiate(encounters[currentEncounterIndex]);
 
         if (currentEncounterIndex >= encounters.Count)

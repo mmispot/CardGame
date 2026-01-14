@@ -46,12 +46,12 @@ public class EnemyActions : MonoBehaviour
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
 
-        if (currentEHealth <= 0) //start next encounter
+        if (currentEHealth <= 0 && !isDefeated) //start next encounter
         {
-            //isDefeated = true;
-            Destroy(this.gameObject);
+            isDefeated = true;
+            playerActions.enemyActions = null;
             gameManager.NextEncounter();
-            playerActions.FindEnemyScript();
+            Destroy(gameObject);
         }
     }
 

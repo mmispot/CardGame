@@ -21,7 +21,7 @@ public class PlayerActions : MonoBehaviour
     public void Start()
     {
         currentPHealth = totalPHealth;
-        FindEnemyScript();
+        enemyActions = null;
     }
 
     public void Update()
@@ -38,26 +38,13 @@ public class PlayerActions : MonoBehaviour
         {
             //game over logic
         }
-    }
 
-    public void FindEnemyScript()
-    {
-        if (gameManager.currentEncounterIndex == 0)
+        if (enemyActions == null)
         {
-            enemyActions = GameObject.Find("Low-Value Bug").GetComponent<EnemyActions>();
-            return;
+            Debug.Log("enemy actions is empty");
+            enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
         }
-        else if (gameManager.currentEncounterIndex == 2)
-        {
-            enemyActions = GameObject.Find("Feature Bug").GetComponent<EnemyActions>();
-            return;
-        }
-        else if (gameManager.currentEncounterIndex == 4)
-        {
-            enemyActions = GameObject.Find("Final Boss").GetComponent<EnemyActions>();
-            return;
-        }
-    }    
+    }  
 
     public void Attack(int actionValue)
     {
