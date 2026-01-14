@@ -49,21 +49,20 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        currentEncounterIndex ++;
+        currentEncounterIndex += 2;
+        //currentEncounterIndex++;
 
         if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
         {
             Instantiate(encounters[currentEncounterIndex]);
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
-            //event logic
+            eventManager.RollForEvent();
         }
 
         if (currentEncounterIndex >= encounters.Count)
         {
             Debug.Log("All encounters completed!");
-
-            eventManager.RollForEvent();
             return;
         }
     }
