@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class EnemyActions : MonoBehaviour
@@ -13,6 +14,8 @@ public class EnemyActions : MonoBehaviour
 
     public float totalEHealth;
     public float currentEHealth;
+    public float enemyDefAmount;
+    public float enemyHealAmount;
     public float currentEDefense;
     [SerializeField] Image healthBar;
 
@@ -30,6 +33,8 @@ public class EnemyActions : MonoBehaviour
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
 
         currentEHealth = totalEHealth;
+
+        gameObject.SetActive(true);
     }
 
     public void Update()
@@ -41,6 +46,12 @@ public class EnemyActions : MonoBehaviour
 
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
+
+        if (currentEHealth <= 0)
+        {
+            gameManager.NextEncounter();
+            gameObject.SetActive(false);
+        }
     }
 
     public void DoAction()

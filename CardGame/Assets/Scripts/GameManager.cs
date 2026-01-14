@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text manaText;
     [SerializeField] private GameObject endTurnButton;
 
+    public List<GameObject> encounters;
+    private int currentEncounterIndex = 0;
+
     void Start()
     {
         currentState = GameStates.PlayerTurn;
@@ -37,7 +41,16 @@ public class GameManager : MonoBehaviour
             EndTurn();
             endTurnButton.SetActive(false);
         }
+
     }
+
+    public void NextEncounter()
+    {
+        currentEncounterIndex++;
+        
+        //move up in list, instantiate next encounter from list according to currentEncounterIndex
+    }
+
     public IEnumerator TakeTimeForTurn()
     {
         yield return new WaitForSeconds(3);
