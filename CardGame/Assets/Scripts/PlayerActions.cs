@@ -21,7 +21,7 @@ public class PlayerActions : MonoBehaviour
     public void Start()
     {
         currentPHealth = totalPHealth;
-        enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
+        FindEnemyScript();
     }
 
     public void Update()
@@ -33,7 +33,31 @@ public class PlayerActions : MonoBehaviour
 
         health.text = currentPHealth.ToString();
         defense.text = shield.ToString();
+
+        if (currentPHealth <= 0)
+        {
+            //game over logic
+        }
     }
+
+    public void FindEnemyScript()
+    {
+        if (gameManager.currentEncounterIndex == 0)
+        {
+            enemyActions = GameObject.Find("Low-Value Bug").GetComponent<EnemyActions>();
+            return;
+        }
+        else if (gameManager.currentEncounterIndex == 2)
+        {
+            enemyActions = GameObject.Find("Feature Bug").GetComponent<EnemyActions>();
+            return;
+        }
+        else if (gameManager.currentEncounterIndex == 4)
+        {
+            enemyActions = GameObject.Find("Final Boss").GetComponent<EnemyActions>();
+            return;
+        }
+    }    
 
     public void Attack(int actionValue)
     {

@@ -22,35 +22,36 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] private TMP_Text health;
     [SerializeField] private TMP_Text defense;
 
+    public bool isDefeated;
+
     public void Start()
     {
-        totalEHealth = 50;
-        damageAmount = 5;
         currentEDefense = 0;
-
-        intelligenceStat = 100; //for testing purposes
 
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
 
         currentEHealth = totalEHealth;
 
-        gameObject.SetActive(true);
+        isDefeated = false;
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        healthBar = GameObject.Find("Enemy HP Bar").GetComponent<Image>();
+        health = GameObject.Find("Enemy HP TXT").GetComponent<TMP_Text>();
+        defense = GameObject.Find("Enemy Shield TXT").GetComponent<TMP_Text>();
     }
 
     public void Update()
     {
-        if (healthBar != null)
-        {
-            healthBar.fillAmount = currentEHealth / totalEHealth;
-        }
-
+        healthBar.fillAmount = currentEHealth / totalEHealth;
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
 
-        if (currentEHealth <= 0)
+        if (currentEHealth <= 0) //start next encounter
         {
+            //isDefeated = true;
+            Destroy(this.gameObject);
             gameManager.NextEncounter();
-            gameObject.SetActive(false);
+            playerActions.FindEnemyScript();
         }
     }
 
@@ -91,13 +92,13 @@ public class EnemyActions : MonoBehaviour
 
     public void Defend()
     {
-        currentEDefense += 5;
+        currentEDefense += enemyDefAmount;
         gameManager.EndTurn();
     }
 
     public void Heal()
     {
-        currentEHealth += 10;
+        currentEHealth += enemyHealAmount;
         gameManager.EndTurn();
     }
 }

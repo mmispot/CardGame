@@ -22,20 +22,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject endTurnButton;
 
     public List<GameObject> encounters;
-    private int currentEncounterIndex = 0;
+    public int currentEncounterIndex = 0;
 
     void Start()
     {
         currentState = GameStates.PlayerTurn;
 
         manaCoffee = 4;
+
+        enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
+        playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
     }
 
     public void Update()
     {
         manaText.text = manaCoffee.ToString();
 
-        //remove button for ending turn when not players turn
         if (manaCoffee <= 0 && currentState == GameStates.PlayerTurn)
         {
             EndTurn();
@@ -46,9 +48,15 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        currentEncounterIndex++;
-        
-        //move up in list, instantiate next encounter from list according to currentEncounterIndex
+        currentEncounterIndex =+ 2;
+        Instantiate(encounters[currentEncounterIndex]);
+
+        if (currentEncounterIndex >= encounters.Count)
+        {
+            Debug.Log("All encounters completed!");
+            //end game logic
+            return;
+        }
     }
 
     public IEnumerator TakeTimeForTurn()

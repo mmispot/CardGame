@@ -69,7 +69,7 @@ public class CardManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("A card is already selected");
+            currentSelectedCard = null;
         }
     }
 
