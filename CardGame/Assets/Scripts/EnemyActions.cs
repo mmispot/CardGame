@@ -22,6 +22,8 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] private TMP_Text health;
     [SerializeField] private TMP_Text defense;
 
+    public Sprite sprite;
+
     public bool isDefeated;
 
     public void Start()

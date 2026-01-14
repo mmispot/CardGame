@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
 
     public GameStates currentState;
     public CardManager cardManager;
+    public EventManager eventManager;
 
-    public float manaCoffee;
+    [SerializeField] public float manaCoffee = 3;
     [SerializeField] private TMP_Text manaText;
     [SerializeField] private GameObject endTurnButton;
 
@@ -27,8 +28,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentState = GameStates.PlayerTurn;
-
-        manaCoffee = 4;
 
         currentEncounterIndex = 0;
 
@@ -50,13 +49,21 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        currentEncounterIndex += 2;
-        Instantiate(encounters[currentEncounterIndex]);
+        currentEncounterIndex ++;
+
+        if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
+        {
+            Instantiate(encounters[currentEncounterIndex]);
+        } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
+        {
+            //event logic
+        }
 
         if (currentEncounterIndex >= encounters.Count)
         {
             Debug.Log("All encounters completed!");
-            //end game logic
+
+            eventManager.RollForEvent();
             return;
         }
     }
