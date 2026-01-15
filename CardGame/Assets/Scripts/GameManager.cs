@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void Update()
     {
         manaText.text = manaCoffee.ToString();
+
         enemyName.text = enemyActions.enemyName;
 
         if (manaCoffee <= 0 && currentState == GameStates.PlayerTurn)
@@ -64,11 +65,13 @@ public class GameManager : MonoBehaviour
         currentEncounterIndex += 2;
         //currentEncounterIndex++;
 
-        enemyName.text = enemyActions.enemyName;
-
         if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
         {
             Instantiate(encounters[currentEncounterIndex]);
+            enemyActions.enemyName = encounters[currentEncounterIndex].name;
+            enemyName.text = enemyActions.enemyName;
+            Debug.Log(enemyActions.enemyName);
+
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
             eventManager.DoEvent(Random.Range(0, 4));

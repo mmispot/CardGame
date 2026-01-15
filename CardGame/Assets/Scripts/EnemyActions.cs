@@ -39,6 +39,8 @@ public class EnemyActions : MonoBehaviour
         healthBar = GameObject.Find("Enemy HP Bar").GetComponent<Image>();
         health = GameObject.Find("Enemy HP TXT").GetComponent<TMP_Text>();
         defense = GameObject.Find("Enemy Shield TXT").GetComponent<TMP_Text>();
+
+        enemyName = gameObject.name;
     }
 
     public void Update()
@@ -46,12 +48,10 @@ public class EnemyActions : MonoBehaviour
         healthBar.fillAmount = currentEHealth / totalEHealth;
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
-        enemyName = gameObject.name;
 
         if (currentEHealth <= 0 && !isDefeated) //start next encounter
         {
             isDefeated = true;
-            playerActions.enemyActions = null;
             gameManager.NextEncounter();
             Destroy(gameObject);
         }

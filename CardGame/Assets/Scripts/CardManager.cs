@@ -143,25 +143,16 @@ public class CardManager : MonoBehaviour
     }
     public void DrawCards()
     {
-        Debug.Log("Playerhand size: " + playerHand.Count + " maxHandSize: " + maxHandSize);
-
         for (int i = 0; i < playerHand.Count; i++)
         {
             if (playerHand[i] == null)
             {
-                Debug.Log("Found empty slot in player hand at index: " + i);
                 int randomIndex = Random.Range(0, deck.Count);
                 CardBase card = deck[randomIndex];
 
-                Debug.Log("Choosing Random card: " + randomIndex + " that's: " + card.name);
                 deck.Remove(card);
                 playerHand[i] = card;
-
-
-                Debug.Log("Displaying card: " + card.cardName + " in display slot: " + i);
                 cardDisplay[i].card = card;
-
-
             }
 
             ReactivateCardDisplays();

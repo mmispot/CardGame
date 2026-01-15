@@ -25,5 +25,7 @@ public class EventManager : MonoBehaviour
         {
             //github conflict error, lose 1/4th of your hp
         }
+
+        gameManager.currentEncounterIndex++;
     }
 }

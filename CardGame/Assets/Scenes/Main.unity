@@ -3734,7 +3734,7 @@ MonoBehaviour:
   enemyActions: {fileID: 0}
   currentState: 0
   cardManager: {fileID: 578559259}
-  eventManager: {fileID: 0}
+  eventManager: {fileID: 2038059262}
   manaCoffee: 0
   maxMana: 0
   manaText: {fileID: 163241387}
@@ -4031,6 +4031,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1943140256}
+    - target: {fileID: 2284099947087583584, guid: c845324c8e6a7c64b9ad3d1801205863, type: 3}
+      propertyPath: enemyNameText
+      value: 
+      objectReference: {fileID: 1567154538}
     - target: {fileID: 2766852170716932522, guid: c845324c8e6a7c64b9ad3d1801205863, type: 3}
       propertyPath: m_Name
       value: Low-Value Bug
