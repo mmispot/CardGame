@@ -1303,6 +1303,7 @@ MonoBehaviour:
   enemyActions: {fileID: 0}
   playerActions: {fileID: 0}
   gameManager: {fileID: 1943140256}
+  doubleDmgBuff: 0
 --- !u!1 &587757490 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2766852170716932522, guid: c845324c8e6a7c64b9ad3d1801205863, type: 3}
@@ -3926,7 +3927,7 @@ MonoBehaviour:
   gameManager: {fileID: 1943140256}
   cardManager: {fileID: 578559259}
   enemyActions: {fileID: 0}
-  totalPHealth: 100
+  totalPHealth: 125
   currentPHealth: 0
   healthBar: {fileID: 383536498}
   shield: 0
