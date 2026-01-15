@@ -44,7 +44,7 @@ public class PlayerActions : MonoBehaviour
             //game over logic
         }
 
-        if (enemyActions == null)
+        if (enemyActions == null && gameManager.eventTime == false)
         {
             Debug.Log("enemy actions is empty");
             enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();

@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,7 +8,8 @@ using UnityEngine.UIElements;
 public enum GameStates
 {
     PlayerTurn,
-    EnemyTurn
+    EnemyTurn,
+    EventTime
 }
 public class GameManager : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class GameManager : MonoBehaviour
     public int damageCounter;
     public int shieldCounter;
 
+    public bool eventTime;
+
     void Start()
     {
         currentState = GameStates.PlayerTurn;
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour
 
         damageCounter = 0;
         shieldCounter = 0;
+
+        eventTime = false;
     }
 
     public void Update()
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         enemyName.text = enemyActions.enemyName;
 
-        if (manaCoffee <= 0 && currentState == GameStates.PlayerTurn)
+        if ((manaCoffee <= 0 || enemyActions.isDefeated) && currentState == GameStates.PlayerTurn)
         {
             EndTurn();
             endTurnButton.SetActive(false);
@@ -62,8 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        currentEncounterIndex += 2;
-        //currentEncounterIndex++;
+        //currentEncounterIndex += 2;
+        currentEncounterIndex++;
 
         if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
         {
@@ -74,8 +80,8 @@ public class GameManager : MonoBehaviour
 
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
-            eventManager.DoEvent(Random.Range(0, 4));
-            //bool doEvent
+            // calculate event ID
+            eventTime = true;
         }
 
         if (currentEncounterIndex >= encounters.Count)
@@ -100,6 +106,7 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.PlayerTurn:
+
                 if (cardManager.doubleDmgBuff)
                 {
                     damageCounter *= 2; //double damage
@@ -110,12 +117,17 @@ public class GameManager : MonoBehaviour
                 shieldCounter = 0;
                 cardManager.doubleDmgBuff = false; //reset buff
 
-                // if do event
-                // change case to event & break
-                // else continue to enemyturn
+                if (eventTime)
+                {
 
-                currentState = GameStates.EnemyTurn;
-                StartCoroutine(TakeTimeForTurn());
+                    currentState = GameStates.EventTime;
+                    eventManager.DoEvent(0); //for testing purposes, always do first event
+                }
+                else
+                {
+                    currentState = GameStates.EnemyTurn;
+                    StartCoroutine(TakeTimeForTurn());
+                }
                 break;
             case GameStates.EnemyTurn:
                 currentState = GameStates.PlayerTurn;
@@ -123,6 +135,12 @@ public class GameManager : MonoBehaviour
                 manaCoffee = maxMana; //reset mana
                 cardManager.DrawCards();
                 break;
+            case GameStates.EventTime:
+                endTurnButton.SetActive(true); //reactivate end turn button
+                currentState = GameStates.PlayerTurn;
+                eventTime = false;
+                break;
+
         }
     }
 }

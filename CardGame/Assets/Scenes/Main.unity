@@ -3756,6 +3756,7 @@ MonoBehaviour:
   currentEncounterIndex: 0
   damageCounter: 0
   shieldCounter: 0
+  eventTime: 0
 --- !u!1 &1953630445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,8 +3878,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1943140256}
-  uiPopUp: {fileID: 0}
+  uiPopUp: {fileID: 2739865705421332877, guid: 8ed3ec56f9d64d14cb9627d4dc2af05a, type: 3}
+  mainCanvas: {fileID: 754145352}
   eventChoice: 0
+  eventOptions:
+  - {fileID: 11400000, guid: 8ee76da3b5661f24bbf2314eba95888b, type: 2}
+  eventTitleText: {fileID: 0}
 --- !u!1 &2057838822
 GameObject:
   m_ObjectHideFlags: 0

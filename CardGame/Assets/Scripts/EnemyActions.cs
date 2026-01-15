@@ -49,7 +49,7 @@ public class EnemyActions : MonoBehaviour
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
 
-        if (currentEHealth <= 0 && !isDefeated) //start next encounter
+        if (currentEHealth <= 0 && !isDefeated && gameManager.eventTime == false) //start next encounter
         {
             isDefeated = true;
             gameManager.NextEncounter();
