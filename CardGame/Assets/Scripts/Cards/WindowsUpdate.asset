@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindowsUpdate
   m_EditorClassIdentifier: 
   cardName: Windows Update
-  flavorText: Your PC has to update... Damn. Deal double damage this turn!
+  flavorText: Your PC has to update... Damn. Deal double damage next turn!
   cardImage: {fileID: 21300000, guid: e5f8b2771808c214ca701142ed2020d9, type: 3}
   artworkImage: {fileID: 21300000, guid: 5a85a92d72ff116428a1c9bf706db83b, type: 3}
   cardCost: 3

@@ -22,6 +22,11 @@ public class PlayerActions : MonoBehaviour
     {
         currentPHealth = totalPHealth;
         enemyActions = null;
+
+        if (currentPHealth > totalPHealth)
+        {
+            currentPHealth = totalPHealth;
+        }
     }
 
     public void Update()

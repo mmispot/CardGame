@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
             eventManager.DoEvent(Random.Range(0, 4));
+            //bool doEvent
         }
 
         if (currentEncounterIndex >= encounters.Count)
@@ -108,6 +109,11 @@ public class GameManager : MonoBehaviour
                 damageCounter = 0;
                 shieldCounter = 0;
                 cardManager.doubleDmgBuff = false; //reset buff
+
+                // if do event
+                // change case to event & break
+                // else continue to enemyturn
+
                 currentState = GameStates.EnemyTurn;
                 StartCoroutine(TakeTimeForTurn());
                 break;

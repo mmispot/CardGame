@@ -64,7 +64,10 @@ public class CardManager : MonoBehaviour
 
             chosenDisplay = currentSelectedCard.GetComponent<CardDisplay>();
 
-            CheckManaCost();
+            if (CanUse())
+            {
+                UseCard();
+            }
             currentSelectedCard = null;
 
             WaitForSeconds();
@@ -75,21 +78,19 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    public void CheckManaCost()
+    private bool CanUse()
     {
-        if (gameManager.manaCoffee >= chosenDisplay.card.cardCost)
-        {
-            gameManager.manaCoffee = gameManager.manaCoffee - chosenDisplay.card.cardCost;
-            UseCard();
-        }
-        else
-        {
-            Debug.Log("Not enough mana to play this card");
-        }
+        return gameManager.manaCoffee >= chosenDisplay.card.cardCost;
+    }
+
+    private void ModifyMana(int amount)
+    {
+        gameManager.manaCoffee += amount;
     }
 
     public void UseCard()
     {
+        ModifyMana(-chosenDisplay.card.cardCost);
 
         if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack)
         {
@@ -133,7 +134,7 @@ public class CardManager : MonoBehaviour
             }
             else if (chosenDisplay.card.cardName == "Free Coffee")
             {
-                gameManager.manaCoffee += 3; //gain 3 mana
+                ModifyMana(3); //gain 3 mana
                 chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 return;
