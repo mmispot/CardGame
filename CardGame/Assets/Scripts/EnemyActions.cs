@@ -12,6 +12,7 @@ public class EnemyActions : MonoBehaviour
     [SerializeField] private int randomIntelCheck;
     public float damageAmount;
 
+    public string enemyName;
     public float totalEHealth;
     public float currentEHealth;
     public float enemyDefAmount;
@@ -45,6 +46,7 @@ public class EnemyActions : MonoBehaviour
         healthBar.fillAmount = currentEHealth / totalEHealth;
         health.text = currentEHealth.ToString();
         defense.text = currentEDefense.ToString();
+        enemyName = gameObject.name;
 
         if (currentEHealth <= 0 && !isDefeated) //start next encounter
         {
@@ -58,7 +60,8 @@ public class EnemyActions : MonoBehaviour
     public void DoAction()
     {
         randomIntelCheck = Random.Range(1, 100);
-        if (currentEHealth < (totalEHealth / 4) && intelligenceStat >= randomIntelCheck) //if health is less than 25%
+
+        if (currentEHealth < (totalEHealth / 4) && intelligenceStat >= randomIntelCheck)
         {
             Defend();
         }

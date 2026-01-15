@@ -91,14 +91,16 @@ public class CardManager : MonoBehaviour
 
         if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack )
         {
-            playerActions.Attack(chosenDisplay.card.actionValue);
+            gameManager.damageCounter += chosenDisplay.card.actionValue;
+            //playerActions.Attack(chosenDisplay.card.actionValue);
             chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
         {
-            playerActions.Defend(chosenDisplay.card.actionValue);
+            gameManager.shieldCounter += chosenDisplay.card.actionValue;
+            //playerActions.Defend(chosenDisplay.card.actionValue);
             chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
@@ -114,8 +116,8 @@ public class CardManager : MonoBehaviour
         {
             if (chosenDisplay.card.cardName == "Windows Update")
             {
-                Debug.Log("Skip turn");
-                playerActions.Attack(15);
+                gameManager.damageCounter += chosenDisplay.card.actionValue;
+                gameManager.damageCounter *= 2; //double damage this turn
                 chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 gameManager.currentState = GameStates.EnemyTurn;
@@ -123,7 +125,7 @@ public class CardManager : MonoBehaviour
             }
             else if (chosenDisplay.card.cardName == "Free Coffee")
             {
-                gameManager.manaCoffee =+ chosenDisplay.card.actionValue;
+                gameManager.manaCoffee = +3; //gain 3 mana
                 chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 return;
@@ -137,9 +139,9 @@ public class CardManager : MonoBehaviour
 
         for (int i = playerHand.Count; i < maxHandSize; i++)
         {
-            int randomIndex = Random.Range(0, allCards.Count);
-            playerHand.Add(allCards[randomIndex]);
-            deck.Remove(allCards[randomIndex]);
+            int randomIndex = Random.Range(0, deck.Count);
+            playerHand.Add(deck[randomIndex]);
+            deck.Remove(deck[randomIndex]);
             cardDisplay[i].card = playerHand[i];
         } 
     }

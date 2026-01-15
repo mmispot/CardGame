@@ -50,11 +50,12 @@ MonoBehaviour:
   playerActions: {fileID: 0}
   intelligenceStat: 90
   randomIntelCheck: 0
-  damageAmount: 15
-  totalEHealth: 150
+  damageAmount: 25
+  enemyName: 
+  totalEHealth: 250
   currentEHealth: 0
-  enemyDefAmount: 15
-  enemyHealAmount: 20
+  enemyDefAmount: 20
+  enemyHealAmount: 25
   currentEDefense: 0
   healthBar: {fileID: 0}
   health: {fileID: 0}

@@ -7,20 +7,21 @@ public class EventManager : MonoBehaviour
     public GameObject uiPopUp;
     public int eventChoice;
 
-    public void RollForEvent()
+    public void DoEvent(int eventChoice)
     {
-        eventChoice = Random.Range(1, 4);
-
         if (eventChoice == 1)
         {
             //kickstarter failed, lose 5HP but gain 1 extra mana from now on
-        } else if (eventChoice == 2)
+        }
+        else if (eventChoice == 2)
         {
             //found a good tutorial, heal 20HP
-        } else if (eventChoice == 3)
+        }
+        else if (eventChoice == 3)
         {
             //colleague brings coffee, fully heal up
-        } else if (eventChoice == 4)
+        }
+        else if (eventChoice == 4)
         {
             //github conflict error, lose 1/4th of your hp
         }

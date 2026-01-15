@@ -18,12 +18,17 @@ public class GameManager : MonoBehaviour
     public CardManager cardManager;
     public EventManager eventManager;
 
-    [SerializeField] public float manaCoffee = 3;
+    [SerializeField] public float manaCoffee;
+    [SerializeField] public float maxMana;
     [SerializeField] private TMP_Text manaText;
     [SerializeField] private GameObject endTurnButton;
+    [SerializeField] private TMP_Text enemyName;
 
     public List<GameObject> encounters;
     public int currentEncounterIndex = 0;
+
+    public int damageCounter;
+    public int shieldCounter;
 
     void Start()
     {
@@ -33,11 +38,18 @@ public class GameManager : MonoBehaviour
 
         enemyActions = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyActions>();
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
+
+        maxMana = 3;
+        manaCoffee = maxMana;
+
+        damageCounter = 0;
+        shieldCounter = 0;
     }
 
     public void Update()
     {
         manaText.text = manaCoffee.ToString();
+        enemyName.text = enemyActions.enemyName;
 
         if (manaCoffee <= 0 && currentState == GameStates.PlayerTurn)
         {
@@ -57,12 +69,13 @@ public class GameManager : MonoBehaviour
             Instantiate(encounters[currentEncounterIndex]);
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
-            eventManager.RollForEvent();
+            eventManager.DoEvent(Random.Range(0, 4));
         }
 
         if (currentEncounterIndex >= encounters.Count)
         {
             Debug.Log("All encounters completed!");
+            //win screen
             return;
         }
     }
@@ -81,15 +94,17 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.PlayerTurn:
+                playerActions.Attack(damageCounter);
+                playerActions.Defend(shieldCounter);
+                damageCounter = 0;
+                shieldCounter = 0;
                 currentState = GameStates.EnemyTurn;
-                Debug.Log(currentState);
                 StartCoroutine(TakeTimeForTurn());
                 break;
             case GameStates.EnemyTurn:
                 currentState = GameStates.PlayerTurn;
                 endTurnButton.SetActive(true); //reactivate end turn button
-                manaCoffee = 4; //reset mana
-                Debug.Log(currentState);
+                manaCoffee = maxMana; //reset mana
                 cardManager.DrawCards();
                 break;
         }

@@ -309,7 +309,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -895,3 +895,5 @@ MonoBehaviour:
   artworkImage: {fileID: 2708432517956519694}
   manaCost: {fileID: 5494741877280552153}
   powerText: {fileID: 7194336126105644534}
+  rectTransform: {fileID: 0}
+  cardManager: {fileID: 0}

@@ -50,16 +50,16 @@ MonoBehaviour:
   playerActions: {fileID: 0}
   intelligenceStat: 30
   randomIntelCheck: 0
-  damageAmount: 5
-  totalEHealth: 50
+  damageAmount: 10
+  enemyName: 
+  totalEHealth: 100
   currentEHealth: 0
-  enemyDefAmount: 5
-  enemyHealAmount: 5
+  enemyDefAmount: 10
+  enemyHealAmount: 10
   currentEDefense: 0
   healthBar: {fileID: 0}
   health: {fileID: 0}
   defense: {fileID: 0}
-  sprite: {fileID: 0}
   isDefeated: 0
 --- !u!65 &564334126953069193
 BoxCollider:
