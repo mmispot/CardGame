@@ -20,7 +20,7 @@ public class CardManager : MonoBehaviour
 
     public GameObject currentSelectedCard;
     public GameObject removedCard;
-    public CardDisplay chosenDisplay; 
+    public CardDisplay chosenDisplay;
 
     public EnemyActions enemyActions;
     public PlayerActions playerActions;
@@ -91,13 +91,14 @@ public class CardManager : MonoBehaviour
     public void UseCard()
     {
 
-        if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack )
+        if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack)
         {
             if (chosenDisplay.card.cardName == "While Loop" && Random.Range(1, 3) == 2)
             {
                 gameManager.damageCounter += 2; //do 2dmg instead
 
-            } else
+            }
+            else
             {
                 gameManager.damageCounter += chosenDisplay.card.actionValue;
             }
@@ -142,22 +143,38 @@ public class CardManager : MonoBehaviour
     }
     public void DrawCards()
     {
-        for (int i = playerHand.Count; i < maxHandSize; i++)
-        {
-            int randomIndex = Random.Range(0, deck.Count);
-            playerHand.Add(deck[randomIndex]);
-            deck.Remove(deck[randomIndex]);
-            cardDisplay[i].card = playerHand[i];
-        } 
+        Debug.Log("Playerhand size: " + playerHand.Count + " maxHandSize: " + maxHandSize);
 
-        ReactivateCardDisplays();
+        for (int i = 0; i < playerHand.Count; i++)
+        {
+            if (playerHand[i] == null)
+            {
+                Debug.Log("Found empty slot in player hand at index: " + i);
+                int randomIndex = Random.Range(0, deck.Count);
+                CardBase card = deck[randomIndex];
+
+                Debug.Log("Choosing Random card: " + randomIndex + " that's: " + card.name);
+                deck.Remove(card);
+                playerHand[i] = card;
+
+
+                Debug.Log("Displaying card: " + card.cardName + " in display slot: " + i);
+                cardDisplay[i].card = card;
+
+
+            }
+
+            ReactivateCardDisplays();
+        }
     }
 
     public void DiscardChosenCard()
     {
         currentSelectedCard.SetActive(false);
         discardPile.Add(chosenDisplay.card);
-        playerHand.Remove(chosenDisplay.card);
+        int index = playerHand.IndexOf(chosenDisplay.card);
+        playerHand[index] = null;
+
     }
 
     public void ReactivateCardDisplays()
