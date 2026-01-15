@@ -10,8 +10,8 @@ public class EnemyActions : MonoBehaviour
 
     [SerializeField] private int intelligenceStat; //if intelligence is high, more likely to heal or defend
     [SerializeField] private int randomIntelCheck;
-    public float damageAmount;
 
+    public float damageAmount;
     public string enemyName;
     public float totalEHealth;
     public float currentEHealth;

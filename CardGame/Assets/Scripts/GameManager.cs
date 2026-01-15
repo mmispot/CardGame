@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
         currentEncounterIndex += 2;
         //currentEncounterIndex++;
 
+        enemyName.text = enemyActions.enemyName;
+
         if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
         {
             Instantiate(encounters[currentEncounterIndex]);
@@ -94,10 +96,15 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameStates.PlayerTurn:
+                if (cardManager.doubleDmgBuff)
+                {
+                    damageCounter *= 2; //double damage
+                }
                 playerActions.Attack(damageCounter);
                 playerActions.Defend(shieldCounter);
                 damageCounter = 0;
                 shieldCounter = 0;
+                cardManager.doubleDmgBuff = false; //reset buff
                 currentState = GameStates.EnemyTurn;
                 StartCoroutine(TakeTimeForTurn());
                 break;

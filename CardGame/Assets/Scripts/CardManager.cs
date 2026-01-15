@@ -26,6 +26,8 @@ public class CardManager : MonoBehaviour
     public PlayerActions playerActions;
     public GameManager gameManager;
 
+    public bool doubleDmgBuff;
+
     public void Start()
     {
         playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
@@ -91,8 +93,14 @@ public class CardManager : MonoBehaviour
 
         if (chosenDisplay.card.firstType == CardBase.actionTypes.Attack )
         {
-            gameManager.damageCounter += chosenDisplay.card.actionValue;
-            //playerActions.Attack(chosenDisplay.card.actionValue);
+            if (chosenDisplay.card.cardName == "While Loop" && Random.Range(1, 3) == 2)
+            {
+                gameManager.damageCounter += 2; //do 2dmg instead
+
+            } else
+            {
+                gameManager.damageCounter += chosenDisplay.card.actionValue;
+            }
             chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
@@ -100,7 +108,6 @@ public class CardManager : MonoBehaviour
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Defend)
         {
             gameManager.shieldCounter += chosenDisplay.card.actionValue;
-            //playerActions.Defend(chosenDisplay.card.actionValue);
             chosenDisplay.VisualDeselect();
             DiscardChosenCard();
             return;
@@ -114,10 +121,10 @@ public class CardManager : MonoBehaviour
         }
         else if (chosenDisplay.card.firstType == CardBase.actionTypes.Buff || chosenDisplay.card.firstType == CardBase.actionTypes.Debuff)
         {
-            if (chosenDisplay.card.cardName == "Windows Update")
+            if (chosenDisplay.card.cardName == "Windows Update" && !doubleDmgBuff)
             {
                 gameManager.damageCounter += chosenDisplay.card.actionValue;
-                gameManager.damageCounter *= 2; //double damage this turn
+                doubleDmgBuff = true; //next attack does double damage
                 chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 gameManager.currentState = GameStates.EnemyTurn;
@@ -125,7 +132,7 @@ public class CardManager : MonoBehaviour
             }
             else if (chosenDisplay.card.cardName == "Free Coffee")
             {
-                gameManager.manaCoffee = +3; //gain 3 mana
+                gameManager.manaCoffee += 3; //gain 3 mana
                 chosenDisplay.VisualDeselect();
                 DiscardChosenCard();
                 return;
@@ -135,8 +142,6 @@ public class CardManager : MonoBehaviour
     }
     public void DrawCards()
     {
-        ReactivateCardDisplays();
-
         for (int i = playerHand.Count; i < maxHandSize; i++)
         {
             int randomIndex = Random.Range(0, deck.Count);
@@ -144,6 +149,8 @@ public class CardManager : MonoBehaviour
             deck.Remove(deck[randomIndex]);
             cardDisplay[i].card = playerHand[i];
         } 
+
+        ReactivateCardDisplays();
     }
 
     public void DiscardChosenCard()
