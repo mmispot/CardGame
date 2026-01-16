@@ -17,4 +17,14 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Home");
     }
+
+    public void WinGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("End");
+    }
+
+    public void LoseGame()
+    {
+       UnityEngine.SceneManagement.SceneManager.LoadScene("Lose");
+    }
 }
