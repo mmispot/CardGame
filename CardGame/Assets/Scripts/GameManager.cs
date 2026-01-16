@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameStates.EventTime:
                 endTurnButton.SetActive(true); //reactivate end turn button
-                currentState = GameStates.PlayerTurn;
                 pickEvent = -1;
                 eventTime = false;
+                currentState = GameStates.PlayerTurn;
                 break;
 
         }
