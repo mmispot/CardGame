@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f83556cf9674d5d42a64c9bda4c2c758, type: 3}
-  m_Name: Kickstarter
+  m_Name: Good Tutorial
   m_EditorClassIdentifier: 
-  eventTitle: Kickstarter Failed...
-  eventDescription: Your kickstarter failed... Lose some HP and regain your determination!
-  image: {fileID: 21300000, guid: 94f3050e7be092245b323cafdfebd86b, type: 3}
-  changeStatValue: 5
-  addStat: 
-  reduceStat: -15 HP
+  eventTitle: Good Tutorial Found!
+  eventDescription: You found a good tutorial and managed to solve some bugs! Gain
+    some HP.
+  image: {fileID: 21300000, guid: d75545452729f074483361fb1ff4b9c0, type: 3}
+  changeStatValue: 15
+  addStat: +15 HP
+  reduceStat: 

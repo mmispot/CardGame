@@ -20,11 +20,47 @@ public class EventManager : MonoBehaviour
 
     private GameObject popUpInstance;
 
+    public PlayerActions playerActions;
+
+    public bool isOpen;
+    public bool statsChanged;
+
+    public void Start()
+    {
+        playerActions = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerActions>();
+    }
+
     public void DoEvent(int eventChoice)
     {
         popUpInstance = Instantiate(uiPopUp, mainCanvas.transform);
+        isOpen = true;
         Debug.Log("spawned event pop up");
         SetEventText(eventChoice);
+        EventStatChanges(eventChoice);
+    }
+
+    public void ResetEventStatChanges()
+    {
+        gameManager.manaCoffee = 3;
+
+    }
+
+    public void EventStatChanges(int eventID)
+    {
+        if (!statsChanged)
+        {
+            if (eventOptions[eventID].reduceStat != null)  //reduces if reduceStat is filled
+                {
+                    playerActions.currentPHealth -= eventOptions[eventID].changeStatValue;
+                    statsChanged = true;
+                }
+            else if (eventOptions[eventID].addStat != null) //adds if addStat is filled
+                {
+                    playerActions.currentPHealth += eventOptions[eventID].changeStatValue;
+                    statsChanged = true;
+            }
+
+        }
     }
 
     public void SetEventText(int eventID)
@@ -50,6 +86,8 @@ public class EventManager : MonoBehaviour
         gameManager.NextEncounter();
         gameManager.EndTurn();
         Destroy(popUpInstance);
+        isOpen = false;
+        statsChanged = false;
         popUpInstance = null;
     }
 }

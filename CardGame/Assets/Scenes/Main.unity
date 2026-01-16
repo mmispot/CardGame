@@ -3883,7 +3883,14 @@ MonoBehaviour:
   eventChoice: 0
   eventOptions:
   - {fileID: 11400000, guid: 8ee76da3b5661f24bbf2314eba95888b, type: 2}
+  - {fileID: 11400000, guid: d830e3af97948544b96c0a0315066283, type: 2}
+  - {fileID: 11400000, guid: 614f80df6b08e61468355c2f4e35f56c, type: 2}
   eventTitleText: {fileID: 0}
+  eventDescriptionText: {fileID: 0}
+  eventImage: {fileID: 0}
+  statAddedText: {fileID: 0}
+  statRemovedText: {fileID: 0}
+  playerActions: {fileID: 0}
 --- !u!1 &2057838822
 GameObject:
   m_ObjectHideFlags: 0

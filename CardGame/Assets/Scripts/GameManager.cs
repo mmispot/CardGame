@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     public int shieldCounter;
 
     public bool eventTime;
+
+    public int pickEvent = -1;
 
     void Start()
     {
@@ -68,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void NextEncounter()
     {
-        //currentEncounterIndex += 2;
         currentEncounterIndex++;
 
         if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
@@ -80,7 +82,6 @@ public class GameManager : MonoBehaviour
 
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
-            // calculate event ID
             eventTime = true;
         }
 
@@ -107,30 +108,38 @@ public class GameManager : MonoBehaviour
         {
             case GameStates.PlayerTurn:
 
-                if (cardManager.doubleDmgBuff)
+                if (!eventTime) //prevents enemy from attacking during eventtime
                 {
-                    damageCounter *= 2; //double damage
-                }
-                playerActions.Attack(damageCounter);
-                playerActions.Defend(shieldCounter);
-                damageCounter = 0;
-                shieldCounter = 0;
-                cardManager.doubleDmgBuff = false; //reset buff
-
-                if (eventTime)
-                {
-
-                    currentState = GameStates.EventTime;
-                    eventManager.DoEvent(0); //for testing purposes, always do first event
-                }
-                else
-                {
+                    if (cardManager.doubleDmgBuff)
+                    {
+                        damageCounter *= 2; //double damage
+                    }
+                    playerActions.Attack(damageCounter);
+                    playerActions.Defend(shieldCounter);
+                    damageCounter = 0;
+                    shieldCounter = 0;
+                    cardManager.doubleDmgBuff = false; //reset buff
                     currentState = GameStates.EnemyTurn;
                     StartCoroutine(TakeTimeForTurn());
+                    break;
                 }
                 break;
             case GameStates.EnemyTurn:
                 currentState = GameStates.PlayerTurn;
+
+                if (eventTime && eventManager.isOpen == false)
+                {
+
+                    if (pickEvent == -1)
+                    {
+                        pickEvent = Random.Range(0, eventManager.eventOptions.Length);
+                        Debug.Log("Chosen event at spot" + pickEvent);
+                    }
+
+                    eventManager.DoEvent(pickEvent);
+                    currentState = GameStates.EventTime;
+                }
+
                 endTurnButton.SetActive(true); //reactivate end turn button
                 manaCoffee = maxMana; //reset mana
                 cardManager.DrawCards();
@@ -138,6 +147,7 @@ public class GameManager : MonoBehaviour
             case GameStates.EventTime:
                 endTurnButton.SetActive(true); //reactivate end turn button
                 currentState = GameStates.PlayerTurn;
+                pickEvent = -1;
                 eventTime = false;
                 break;
 

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f83556cf9674d5d42a64c9bda4c2c758, type: 3}
-  m_Name: Kickstarter
+  m_Name: Github Conflict
   m_EditorClassIdentifier: 
-  eventTitle: Kickstarter Failed...
-  eventDescription: Your kickstarter failed... Lose some HP and regain your determination!
-  image: {fileID: 21300000, guid: 94f3050e7be092245b323cafdfebd86b, type: 3}
-  changeStatValue: 5
+  eventTitle: GitHub Conflict
+  eventDescription: You have to go back on some of your code, because of a GitHub
+    conflict error... Damn.
+  image: {fileID: 21300000, guid: 9bccb514140f2714a9883175e71229f2, type: 3}
+  changeStatValue: 20
   addStat: 
-  reduceStat: -15 HP
+  reduceStat: -20 HP

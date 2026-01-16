@@ -11,6 +11,7 @@ public class EventBase : ScriptableObject
 
     public Sprite image;
 
+    public int changeStatValue;
     public string addStat;
     public string reduceStat;
 
