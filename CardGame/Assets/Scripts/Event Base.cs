@@ -9,7 +9,7 @@ public class EventBase : ScriptableObject
     public string eventTitle;
     public string eventDescription;
 
-    public Image image;
+    public Sprite image;
 
     public string addStat;
     public string reduceStat;
