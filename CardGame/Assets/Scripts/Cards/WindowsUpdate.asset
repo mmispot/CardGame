@@ -18,4 +18,4 @@ MonoBehaviour:
   artworkImage: {fileID: 21300000, guid: 5a85a92d72ff116428a1c9bf706db83b, type: 3}
   cardCost: 3
   firstType: 4
-  actionValue: 25
+  actionValue: 20
