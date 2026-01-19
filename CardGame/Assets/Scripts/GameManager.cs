@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 {
     public PlayerActions playerActions;
     public EnemyActions enemyActions;
+    public SceneManager sceneManager;
 
     public GameStates currentState;
     public CardManager cardManager;
@@ -61,13 +62,24 @@ public class GameManager : MonoBehaviour
         manaText.text = manaCoffee.ToString();
 
         enemyName.text = enemyActions.enemyName;
+    }
 
-        //if ((eventTime == false && manaCoffee <= 0 || enemyActions.isDefeated) && currentState == GameStates.PlayerTurn)
-        //{
-        //    SwitchTurn(GameStates.EnemyTurn);
-        //    endTurnButton.SetActive(false);
-        //}
+    public void WinGame()
+    {
+        sceneManager.WinGame();
+    }
 
+    public void LoseGame()
+    {
+        sceneManager.LoseGame();
+    }
+
+    public void ManaCheck()
+    {
+        if (manaCoffee <= 0 && !eventTime)
+        {
+            SwitchTurn(GameStates.EnemyTurn);
+        }
     }
 
     public void NextEncounter()
@@ -89,7 +101,7 @@ public class GameManager : MonoBehaviour
         if (currentEncounterIndex >= encounters.Count)
         {
             Debug.Log("All encounters completed!");
-            //win screen
+            WinGame();
             return;
         }
     }

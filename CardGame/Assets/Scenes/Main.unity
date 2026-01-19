@@ -3784,6 +3784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerActions: {fileID: 2057838824}
   enemyActions: {fileID: 0}
+  sceneManager: {fileID: 1230881878}
   currentState: 0
   cardManager: {fileID: 578559259}
   eventManager: {fileID: 2038059262}

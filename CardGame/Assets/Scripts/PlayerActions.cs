@@ -41,7 +41,7 @@ public class PlayerActions : MonoBehaviour
 
         if (currentPHealth <= 0)
         {
-            //game over logic
+            gameManager.WinGame();
         }
 
         if (enemyActions == null && gameManager.eventTime == false)

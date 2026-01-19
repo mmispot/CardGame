@@ -141,6 +141,8 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        gameManager.ManaCheck();
+
     }
     public void DrawCards()
     {
