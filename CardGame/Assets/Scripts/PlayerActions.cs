@@ -41,7 +41,7 @@ public class PlayerActions : MonoBehaviour
 
         if (currentPHealth <= 0)
         {
-            gameManager.WinGame();
+            gameManager.LoseGame();
         }
 
         if (enemyActions == null && gameManager.eventTime == false)

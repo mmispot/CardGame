@@ -146,10 +146,15 @@ public class GameManager : MonoBehaviour
 
     public void StartEnemyTurn()
     {
+        if (cardManager.doubleDmgBuff)
+        {
+            damageCounter *= 2;
+        }
         playerActions.Attack(damageCounter);
         playerActions.Defend(shieldCounter);
         damageCounter = 0;
         shieldCounter = 0;
+        cardManager.doubleDmgBuff = false;
 
         endTurnButton.SetActive(false);
         StartCoroutine(TakeTimeForTurn());
