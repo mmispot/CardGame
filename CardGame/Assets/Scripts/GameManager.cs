@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        currentState = GameStates.PlayerTurn;
 
         currentEncounterIndex = 0;
 
@@ -53,6 +52,8 @@ public class GameManager : MonoBehaviour
         shieldCounter = 0;
 
         eventTime = false;
+
+        StartPlayerTurn();
     }
 
     public void Update()
@@ -61,11 +62,11 @@ public class GameManager : MonoBehaviour
 
         enemyName.text = enemyActions.enemyName;
 
-        if ((manaCoffee <= 0 || enemyActions.isDefeated) && currentState == GameStates.PlayerTurn)
-        {
-            EndTurn();
-            endTurnButton.SetActive(false);
-        }
+        //if ((eventTime == false && manaCoffee <= 0 || enemyActions.isDefeated) && currentState == GameStates.PlayerTurn)
+        //{
+        //    SwitchTurn(GameStates.EnemyTurn);
+        //    endTurnButton.SetActive(false);
+        //}
 
     }
 
@@ -82,7 +83,7 @@ public class GameManager : MonoBehaviour
 
         } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
         {
-            eventTime = true;
+            SwitchTurn(GameStates.EventTime);
         }
 
         if (currentEncounterIndex >= encounters.Count)
@@ -97,60 +98,54 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         enemyActions.DoAction();
-        currentState = GameStates.PlayerTurn;
     }
 
-    public void EndTurn()
+    public void SwitchTurn(GameStates nextTurn)
     {
-        endTurnButton.SetActive(false);
+        currentState = nextTurn;
 
         switch (currentState)
         {
             case GameStates.PlayerTurn:
-
-                if (!eventTime) //prevents enemy from attacking during eventtime
-                {
-                    if (cardManager.doubleDmgBuff)
-                    {
-                        damageCounter *= 2; //double damage
-                    }
-                    playerActions.Attack(damageCounter);
-                    playerActions.Defend(shieldCounter);
-                    damageCounter = 0;
-                    shieldCounter = 0;
-                    cardManager.doubleDmgBuff = false; //reset buff
-                    currentState = GameStates.EnemyTurn;
-                    StartCoroutine(TakeTimeForTurn());
-                    break;
-                }
+                StartPlayerTurn();
                 break;
+
             case GameStates.EnemyTurn:
-                currentState = GameStates.PlayerTurn;
-
-                if (eventTime && eventManager.isOpen == false)
-                {
-
-                    if (pickEvent == -1)
-                    {
-                        pickEvent = Random.Range(0, eventManager.eventOptions.Length);
-                        Debug.Log("Chosen event at spot" + pickEvent);
-                    }
-
-                    eventManager.DoEvent(pickEvent);
-                    currentState = GameStates.EventTime;
-                }
-
-                endTurnButton.SetActive(true); //reactivate end turn button
-                manaCoffee = maxMana; //reset mana
-                cardManager.DrawCards();
+                StartEnemyTurn();
                 break;
+
             case GameStates.EventTime:
-                endTurnButton.SetActive(true); //reactivate end turn button
-                pickEvent = -1;
-                eventTime = false;
-                currentState = GameStates.PlayerTurn;
+                StartEvent();
                 break;
-
         }
+    }
+
+    public void SwitchTurnBtn()
+    {
+        SwitchTurn(GameStates.EnemyTurn);
+    }
+
+    public void StartPlayerTurn()
+    {
+        manaCoffee = maxMana;
+        endTurnButton.SetActive(true);
+        cardManager.DrawCards();
+    }
+
+    public void StartEnemyTurn()
+    {
+        playerActions.Attack(damageCounter);
+        playerActions.Defend(shieldCounter);
+        damageCounter = 0;
+        shieldCounter = 0;
+
+        endTurnButton.SetActive(false);
+        StartCoroutine(TakeTimeForTurn());
+    }
+
+    public void StartEvent()
+    {
+        endTurnButton.SetActive(false);
+        eventManager.DoEvent(Random.Range(0, eventManager.eventOptions.Length));
     }
 }

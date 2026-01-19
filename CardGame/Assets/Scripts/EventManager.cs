@@ -34,7 +34,6 @@ public class EventManager : MonoBehaviour
     {
         popUpInstance = Instantiate(uiPopUp, mainCanvas.transform);
         isOpen = true;
-        Debug.Log("spawned event pop up");
         SetEventText(eventChoice);
         EventStatChanges(eventChoice);
     }
@@ -84,7 +83,9 @@ public class EventManager : MonoBehaviour
     private void Continue()
     {
         gameManager.NextEncounter();
-        gameManager.EndTurn();
+        gameManager.eventTime = false;
+        gameManager.SwitchTurn(GameStates.PlayerTurn);
+
         Destroy(popUpInstance);
         isOpen = false;
         statsChanged = false;

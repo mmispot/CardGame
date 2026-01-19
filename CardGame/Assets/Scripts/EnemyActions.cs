@@ -90,18 +90,19 @@ public class EnemyActions : MonoBehaviour
         {
             playerActions.shield -= incomingDamage;
         }
-        gameManager.EndTurn();
+
+        gameManager.SwitchTurn(GameStates.PlayerTurn);
     }
 
     public void Defend()
     {
         currentEDefense += enemyDefAmount;
-        gameManager.EndTurn();
+        gameManager.SwitchTurn(GameStates.PlayerTurn);
     }
 
     public void Heal()
     {
         currentEHealth += enemyHealAmount;
-        gameManager.EndTurn();
+        gameManager.SwitchTurn(GameStates.PlayerTurn);
     }
 }

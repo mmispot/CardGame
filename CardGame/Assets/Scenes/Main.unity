@@ -3373,7 +3373,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1943140256}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: EndTurn
+        m_MethodName: SwitchTurnBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3787,7 +3787,6 @@ MonoBehaviour:
   currentState: 0
   cardManager: {fileID: 578559259}
   eventManager: {fileID: 2038059262}
-  sceneManager: {fileID: 1230881878}
   manaCoffee: 0
   maxMana: 0
   manaText: {fileID: 163241387}

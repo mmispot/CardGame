@@ -53,34 +53,28 @@ public class PlayerActions : MonoBehaviour
 
     public void Attack(int actionValue)
     {
-        if (gameManager.currentState == GameStates.PlayerTurn)
+        if (actionValue > enemyActions.currentEDefense)
         {
-            if (actionValue > enemyActions.currentEDefense)
-            {
-                float dmgAfterDef = actionValue - enemyActions.currentEDefense;
-                enemyActions.currentEDefense = 0;
-                enemyActions.currentEHealth -= dmgAfterDef;
-            }
-            else
-            {
-                enemyActions.currentEDefense -= actionValue;
-            }
+            float dmgAfterDef = actionValue - enemyActions.currentEDefense;
+            enemyActions.currentEDefense = 0;
+            enemyActions.currentEHealth -= dmgAfterDef;
+        }
+        else
+        {
+            enemyActions.currentEDefense -= actionValue;
         }
     }
 
     public void Defend(int actionValue)
     {
-        if (gameManager.currentState == GameStates.PlayerTurn)
-        {
-            shield += actionValue;
-        }
+
+        shield += actionValue;
+
     }
 
     public void Heal(int actionValue)
     {
-        if (gameManager.currentState == GameStates.PlayerTurn)
-        {
-            currentPHealth += actionValue;
-        }
+
+        currentPHealth += actionValue;
     }
 }
