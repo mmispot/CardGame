@@ -43,11 +43,11 @@ public class CardDisplay : MonoBehaviour
 
     public void VisualSelected()
     {
-        rectTransform.localScale += new Vector3(1.3f, 1.3f, 1000);
+        rectTransform.localScale += new Vector3(1.3f, 1.3f, -1000);
     }
 
     public void VisualDeselect()
     {
-        rectTransform.localScale -= new Vector3(1.3f, 1.3f, 1000);
+        rectTransform.localScale -= new Vector3(1.3f, 1.3f, -1000);
     }
 }
