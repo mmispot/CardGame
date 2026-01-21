@@ -1364,8 +1364,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c7c60cef79ed604d872d645b2dad44d, type: 3}
-  m_Resource: {fileID: 8300000, guid: 0c7c60cef79ed604d872d645b2dad44d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6546cc3f5623ad145bec771693bff356, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6546cc3f5623ad145bec771693bff356, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2287,7 +2287,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4318,6 +4318,47 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1855693120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855693116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a98125502f715b4b83cfb77b434e436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
 --- !u!1 &1943140253
 GameObject:
   m_ObjectHideFlags: 0
@@ -4902,6 +4943,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5471830293847504243, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1855693119}
+    - targetCorrespondingSourceObject: {fileID: 5471830293847504243, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1855693120}
   m_SourcePrefab: {fileID: 100100000, guid: f55cc1d8890ca854f8a739b6051ea9d6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
