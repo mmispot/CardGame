@@ -4,10 +4,12 @@ public class AudioManager : MonoBehaviour
 {
 
     public AudioClip backgroundMusic;
+    public AudioClip notEnoughMana;
 
 
     private static AudioManager instance;
     public AudioSource audioSource;
+    public AudioSource audioSourceCards;
     public static AudioManager Instance
     {
         get 
@@ -36,5 +38,11 @@ public class AudioManager : MonoBehaviour
     {
        audioSource.clip = clip;
        audioSource.Play();
+    }
+
+    public void PlayOnce(AudioSource location, AudioClip clip)
+    {
+        location.clip = clip;
+        location.PlayOneShot(clip);
     }
 }

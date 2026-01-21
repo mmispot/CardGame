@@ -507,8 +507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c95522767db29e4d86dc1b5fb79887e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: b5d314ae36806644a9b7537d8d8e6463, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 15fff0ec924f009458be37c4c21efbe7, type: 3}
+  notEnoughMana: {fileID: 0}
   audioSource: {fileID: 0}
+  audioSourceCards: {fileID: 0}
 --- !u!4 &436003738
 Transform:
   m_ObjectHideFlags: 0

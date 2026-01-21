@@ -25,6 +25,8 @@ public class CardManager : MonoBehaviour
     public EnemyActions enemyActions;
     public PlayerActions playerActions;
     public GameManager gameManager;
+    public AudioManager audioManager;
+    public AudioSource audioSource;
 
     public bool doubleDmgBuff;
 
@@ -34,6 +36,7 @@ public class CardManager : MonoBehaviour
         DrawPlayerHand();
 
         discardPile = new List<CardBase>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     IEnumerator WaitForSeconds()
@@ -68,6 +71,11 @@ public class CardManager : MonoBehaviour
             {
                 UseCard();
             }
+            else
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+
             currentSelectedCard = null;
 
             WaitForSeconds();
