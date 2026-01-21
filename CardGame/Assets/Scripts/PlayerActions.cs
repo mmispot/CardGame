@@ -36,6 +36,11 @@ public class PlayerActions : MonoBehaviour
             healthBar.fillAmount = currentPHealth / 100;
         }
 
+        if (currentPHealth > totalPHealth)
+        {
+            currentPHealth = totalPHealth;
+        }
+
         health.text = currentPHealth.ToString();
         defense.text = shield.ToString();
 
