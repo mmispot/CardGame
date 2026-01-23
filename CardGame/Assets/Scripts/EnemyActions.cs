@@ -59,7 +59,7 @@ public class EnemyActions : MonoBehaviour
 
     public void DoAction()
     {
-        randomIntelCheck = Random.Range(1, 100);
+        randomIntelCheck = Random.Range(1, 100); //enemy AI based on intelligence stat
 
         if (currentEHealth < (totalEHealth / 4) && intelligenceStat >= randomIntelCheck)
         {
@@ -75,7 +75,7 @@ public class EnemyActions : MonoBehaviour
         }
     }
 
-    public void Attack(float incomingDamage)
+    public void Attack(float incomingDamage) //changes dmg based on player defense
     {
         Mathf.Clamp(playerActions.shield, 0, 100);
         Mathf.Clamp(playerActions.currentPHealth, 0, 100);

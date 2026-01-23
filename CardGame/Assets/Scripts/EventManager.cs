@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour
 
     }
 
-    public void EventStatChanges(int eventID)
+    public void EventStatChanges(int eventID) //change stats once after event has popped up
     {
         if (!statsChanged)
         {
@@ -62,7 +62,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public void SetEventText(int eventID)
+    public void SetEventText(int eventID) //fill in the pop-up with event info
     {
         eventTitleText = popUpInstance.transform.Find("Event Title").GetComponent<TMP_Text>();
         eventImage = popUpInstance.transform.Find("Img").GetComponent<Image>();
@@ -80,7 +80,7 @@ public class EventManager : MonoBehaviour
         statRemovedText.text = eventOptions[eventID].reduceStat;
     }
 
-    private void Continue()
+    private void Continue() //close the pop-up and continue the game
     {
         gameManager.NextEncounter();
         gameManager.eventTime = false;

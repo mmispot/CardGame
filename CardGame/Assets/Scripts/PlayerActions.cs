@@ -33,7 +33,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (healthBar != null)
         {
-            healthBar.fillAmount = currentPHealth / 100;
+            healthBar.fillAmount = currentPHealth / totalPHealth;
         }
 
         if (currentPHealth > totalPHealth)
@@ -56,7 +56,7 @@ public class PlayerActions : MonoBehaviour
         }
     }  
 
-    public void Attack(int actionValue)
+    public void Attack(int actionValue) //change dmg based on enemy defense
     {
         if (actionValue > enemyActions.currentEDefense)
         {

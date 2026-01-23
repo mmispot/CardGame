@@ -14,19 +14,19 @@ public enum GameStates
 }
 public class GameManager : MonoBehaviour
 {
-    public PlayerActions playerActions;
-    public EnemyActions enemyActions;
-    public SceneManager sceneManager;
+    public PlayerActions                 playerActions;
+    public EnemyActions                  enemyActions;
+    public SceneManager                  sceneManager;
 
-    public GameStates currentState;
-    public CardManager cardManager;
-    public EventManager eventManager;
+    public GameStates                    currentState;
+    public CardManager                   cardManager;
+    public EventManager                  eventManager;
 
-    [SerializeField] public float manaCoffee;
-    [SerializeField] public float maxMana;
-    [SerializeField] private TMP_Text manaText;
-    [SerializeField] private GameObject endTurnButton;
-    [SerializeField] private TMP_Text enemyName;
+    [SerializeField] public float        manaCoffee;
+    [SerializeField] public float        maxMana;
+    [SerializeField] private TMP_Text    manaText;
+    [SerializeField] private GameObject  endTurnButton;
+    [SerializeField] private TMP_Text    enemyName;
 
     public List<GameObject> encounters;
     public int currentEncounterIndex = 0;
@@ -82,18 +82,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NextEncounter()
+    public void NextEncounter() //scroll through encounter list
     {
         currentEncounterIndex++;
 
-        if (currentEncounterIndex == 2 || currentEncounterIndex == 4)
+        if (currentEncounterIndex == 2 || currentEncounterIndex == 4) //enemy encounters
         {
             Instantiate(encounters[currentEncounterIndex]);
             enemyActions.enemyName = encounters[currentEncounterIndex].name;
             enemyName.text = enemyActions.enemyName;
             Debug.Log(enemyActions.enemyName);
 
-        } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3)
+        } else if (currentEncounterIndex == 1 || currentEncounterIndex == 3) //event encounters
         {
             SwitchTurn(GameStates.EventTime);
         }
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator TakeTimeForTurn()
+    public IEnumerator TakeTimeForTurn() //makes enemy feel more alive
     {
         yield return new WaitForSeconds(3);
         enemyActions.DoAction();
